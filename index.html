@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JCF | Roblox Fighter Rankings</title>
+
+  <title>JCF | Official Roblox Fighter Rankings</title>
 
   <style>
     * {
@@ -14,9 +15,11 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #f5f5f5;
+      background: #f4f4f4;
       color: #111;
     }
+
+    /* HEADER */
 
     header {
       background: #111;
@@ -26,72 +29,98 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
       font-size: 34px;
       font-weight: 900;
-      letter-spacing: -2px;
+      font-style: italic;
+      letter-spacing: -3px;
     }
 
     nav {
       display: flex;
-      gap: 35px;
-      font-weight: bold;
-      font-size: 14px;
+      gap: 32px;
+      font-weight: 900;
+      font-size: 13px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
+      transition: .2s;
     }
+
+    nav a:hover {
+      color: #d40000;
+    }
+
+    /* HERO */
 
     .hero {
       background: white;
-      padding: 70px 6% 45px;
+      padding: 65px 6% 55px;
       border-bottom: 1px solid #ddd;
     }
 
     .small-title {
       color: #d40000;
-      font-size: 14px;
-      font-weight: 800;
+      font-size: 13px;
+      font-weight: 900;
       letter-spacing: 2px;
       margin-bottom: 12px;
     }
 
     h1 {
-      font-size: clamp(42px, 8vw, 90px);
+      font-size: clamp(42px, 8vw, 88px);
       font-weight: 900;
-      letter-spacing: -4px;
-      line-height: .9;
+      letter-spacing: -5px;
+      line-height: .88;
     }
 
+    /* RANKINGS */
+
     .ranking {
-      max-width: 1200px;
+      max-width: 1250px;
       margin: 0 auto;
       padding: 50px 6%;
     }
 
+    .gender-title {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #d40000;
+      margin: 10px 0 35px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #111;
+    }
+
     .division {
-      margin-bottom: 55px;
+      margin-bottom: 65px;
     }
 
     .division-title {
+      font-size: 26px;
+      font-weight: 900;
       border-bottom: 4px solid #111;
       padding-bottom: 12px;
-      font-size: 24px;
-      font-weight: 900;
+      text-transform: uppercase;
     }
+
+    /* FIGHTER ROW */
 
     .fighter {
       background: white;
-      min-height: 150px;
-      border-bottom: 1px solid #ddd;
+      min-height: 125px;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid #ddd;
       cursor: pointer;
       transition: .2s;
     }
@@ -100,58 +129,85 @@
       background: #eeeeee;
     }
 
+    .fighter.champion {
+      min-height: 165px;
+    }
+
     .rank {
-      width: 80px;
+      width: 85px;
+      min-width: 85px;
       text-align: center;
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 900;
       color: #999;
     }
 
+    .champion .rank {
+      color: #111;
+      font-size: 27px;
+    }
+
     .fighter-info {
       flex: 1;
-      padding: 25px;
+      padding: 20px 10px;
       z-index: 2;
     }
 
     .status {
       color: #d40000;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 7px;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
     }
 
     .fighter-name {
-      font-size: clamp(25px, 4vw, 43px);
+      font-size: clamp(21px, 3.5vw, 38px);
       font-weight: 900;
       text-transform: uppercase;
+      line-height: 1;
     }
 
     .record {
       margin-top: 7px;
       color: #666;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 700;
     }
 
     .fighter-image {
-      width: 190px;
-      height: 150px;
+      width: 155px;
+      height: 125px;
       object-fit: contain;
       align-self: flex-end;
-      margin-right: 40px;
+      margin-right: 35px;
+    }
+
+    .champion .fighter-image {
+      width: 190px;
+      height: 160px;
     }
 
     .arrow {
-      font-size: 28px;
-      padding: 20px;
+      width: 55px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      transition: .2s;
     }
+
+    .fighter.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* DETAILS */
 
     .details {
       display: none;
-      background: #181818;
+      background: #171717;
       color: white;
-      padding: 25px 35px;
+      padding: 25px 40px;
+      border-top: 2px solid #d40000;
     }
 
     .details.open {
@@ -160,32 +216,50 @@
 
     .stats {
       display: flex;
-      gap: 35px;
+      gap: 45px;
       flex-wrap: wrap;
     }
 
     .stat strong {
       display: block;
-      font-size: 22px;
+      font-size: 21px;
     }
 
     .stat span {
       color: #aaa;
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
+
+    /* WOMEN'S SECTION */
+
+    .women-section {
+      margin-top: 80px;
+    }
+
+    /* FOOTER */
 
     footer {
       background: #111;
-      color: #aaa;
+      color: #888;
       text-align: center;
       padding: 35px;
-      font-size: 13px;
+      font-size: 12px;
+      margin-top: 20px;
     }
 
+    /* MOBILE */
+
     @media (max-width: 700px) {
+
       header {
-        padding: 0 20px;
+        height: 60px;
+        padding: 0 18px;
+      }
+
+      .logo {
+        font-size: 29px;
       }
 
       nav {
@@ -193,34 +267,96 @@
       }
 
       .hero {
-        padding: 50px 20px 35px;
+        padding: 45px 20px 38px;
+      }
+
+      h1 {
+        font-size: 48px;
+        letter-spacing: -3px;
       }
 
       .ranking {
-        padding: 35px 15px;
+        padding: 35px 12px;
+      }
+
+      .gender-title {
+        margin-bottom: 25px;
+      }
+
+      .division {
+        margin-bottom: 45px;
+      }
+
+      .division-title {
+        font-size: 20px;
+        padding-bottom: 10px;
       }
 
       .fighter {
-        min-height: 120px;
+        min-height: 100px;
+      }
+
+      .fighter.champion {
+        min-height: 125px;
       }
 
       .rank {
-        width: 45px;
-        font-size: 18px;
+        width: 42px;
+        min-width: 42px;
+        font-size: 17px;
+      }
+
+      .champion .rank {
+        font-size: 20px;
       }
 
       .fighter-info {
-        padding: 15px 8px;
+        padding: 12px 5px;
+      }
+
+      .status {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .fighter-name {
+        font-size: 19px;
+      }
+
+      .record {
+        font-size: 10px;
       }
 
       .fighter-image {
+        width: 85px;
+        height: 90px;
+        margin-right: 0;
+      }
+
+      .champion .fighter-image {
         width: 105px;
-        height: 115px;
-        margin-right: 5px;
+        height: 110px;
       }
 
       .arrow {
-        padding: 10px;
+        width: 32px;
+        font-size: 20px;
+      }
+
+      .details {
+        padding: 20px 15px;
+      }
+
+      .stats {
+        gap: 22px;
+      }
+
+      .stat strong {
+        font-size: 17px;
+      }
+
+      .stat span {
+        font-size: 8px;
       }
     }
   </style>
@@ -240,111 +376,315 @@
   </nav>
 </header>
 
+
 <section class="hero">
   <div class="small-title">OFFICIAL RANKINGS</div>
-  <h1>JCF ROBLOX<br>RANKINGS</h1>
+
+  <h1>
+    JCF ROBLOX<br>
+    RANKINGS
+  </h1>
 </section>
 
-<main class="ranking">
 
-  <section class="division">
-    <div class="division-title">HEAVYWEIGHT</div>
+<main class="ranking" id="rankings"></main>
 
-    <div class="fighter" onclick="toggleDetails(this)">
-      <div class="rank">C</div>
-
-      <div class="fighter-info">
-        <div class="status">JCF CHAMPION</div>
-        <div class="fighter-name">FIGHTER NAME</div>
-        <div class="record">0-0-0</div>
-      </div>
-
-      <img class="fighter-image"
-           src="https://placehold.co/300x300"
-           alt="Roblox fighter">
-
-      <div class="arrow">⌄</div>
-    </div>
-
-    <div class="details">
-      <div class="stats">
-
-        <div class="stat">
-          <strong>0-0-0</strong>
-          <span>Record</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>KO Wins</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>Sub Wins</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>Win Streak</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="division">
-    <div class="division-title">LIGHTWEIGHT</div>
-
-    <div class="fighter" onclick="toggleDetails(this)">
-      <div class="rank">C</div>
-
-      <div class="fighter-info">
-        <div class="status">JCF CHAMPION</div>
-        <div class="fighter-name">FIGHTER NAME</div>
-        <div class="record">0-0-0</div>
-      </div>
-
-      <img class="fighter-image"
-           src="https://placehold.co/300x300"
-           alt="Roblox fighter">
-
-      <div class="arrow">⌄</div>
-    </div>
-
-    <div class="details">
-      <div class="stats">
-
-        <div class="stat">
-          <strong>0-0-0</strong>
-          <span>Record</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>KO Wins</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>Sub Wins</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
 
 <footer>
   © 2026 JCF — Roblox Fighter Rankings
 </footer>
 
+
 <script>
-function toggleDetails(fighter) {
-  const details = fighter.nextElementSibling;
-  details.classList.toggle("open");
+
+const divisions = [
+
+  /* MEN'S DIVISIONS */
+
+  {
+    name: "HEAVYWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "LIGHT HEAVYWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "MIDDLEWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "WELTERWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "LIGHTWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "FEATHERWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "BANTAMWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "FLYWEIGHT",
+    gender: "MEN",
+    champion: "FIGHTER NAME"
+  },
+
+
+  /* WOMEN'S DIVISIONS */
+
+  {
+    name: "WOMEN'S STRAWWEIGHT",
+    gender: "WOMEN",
+    champion: "FIGHTER NAME"
+  },
+
+  {
+    name: "WOMEN'S FLYWEIGHT",
+    gender: "WOMEN",
+    champion: "FIGHTER NAME"
+  }
+
+];
+
+
+const rankingsContainer = document.getElementById("rankings");
+
+let currentGender = "";
+
+
+divisions.forEach((division) => {
+
+  /* Add MEN'S / WOMEN'S heading */
+
+  if (division.gender !== currentGender) {
+
+    currentGender = division.gender;
+
+    const genderTitle = document.createElement("div");
+
+    genderTitle.className = "gender-title";
+
+    genderTitle.textContent =
+      division.gender === "MEN"
+      ? "MEN'S RANKINGS"
+      : "WOMEN'S RANKINGS";
+
+    rankingsContainer.appendChild(genderTitle);
+  }
+
+
+  /* Division */
+
+  const divisionSection = document.createElement("section");
+
+  divisionSection.className = "division";
+
+
+  const divisionTitle = document.createElement("div");
+
+  divisionTitle.className = "division-title";
+
+  divisionTitle.textContent = division.name;
+
+  divisionSection.appendChild(divisionTitle);
+
+
+  /* CHAMPION */
+
+  const champion = createFighter(
+    "C",
+    division.champion,
+    "JCF CHAMPION",
+    "0-0-0",
+    true
+  );
+
+  divisionSection.appendChild(champion);
+
+
+  /* RANKINGS 1-15 */
+
+  for (let rank = 1; rank <= 15; rank++) {
+
+    const fighter = createFighter(
+      rank,
+      "FIGHTER NAME",
+      "",
+      "0-0-0",
+      false
+    );
+
+    divisionSection.appendChild(fighter);
+  }
+
+
+  rankingsContainer.appendChild(divisionSection);
+
+});
+
+
+function createFighter(rank, name, status, record, isChampion) {
+
+  const wrapper = document.createElement("div");
+
+
+  const fighter = document.createElement("div");
+
+  fighter.className =
+    isChampion
+    ? "fighter champion"
+    : "fighter";
+
+
+  fighter.onclick = function() {
+    toggleDetails(fighter);
+  };
+
+
+  const rankElement = document.createElement("div");
+
+  rankElement.className = "rank";
+
+  rankElement.textContent = rank;
+
+
+  const info = document.createElement("div");
+
+  info.className = "fighter-info";
+
+
+  if (status) {
+
+    const statusElement = document.createElement("div");
+
+    statusElement.className = "status";
+
+    statusElement.textContent = status;
+
+    info.appendChild(statusElement);
+  }
+
+
+  const nameElement = document.createElement("div");
+
+  nameElement.className = "fighter-name";
+
+  nameElement.textContent = name;
+
+  info.appendChild(nameElement);
+
+
+  const recordElement = document.createElement("div");
+
+  recordElement.className = "record";
+
+  recordElement.textContent = record;
+
+  info.appendChild(recordElement);
+
+
+  const image = document.createElement("img");
+
+  image.className = "fighter-image";
+
+  image.src = "https://placehold.co/300x300";
+
+  image.alt = "JCF Roblox fighter";
+
+
+  const arrow = document.createElement("div");
+
+  arrow.className = "arrow";
+
+  arrow.textContent = "⌄";
+
+
+  fighter.appendChild(rankElement);
+
+  fighter.appendChild(info);
+
+  fighter.appendChild(image);
+
+  fighter.appendChild(arrow);
+
+
+  /* DETAILS */
+
+  const details = document.createElement("div");
+
+  details.className = "details";
+
+
+  const stats = document.createElement("div");
+
+  stats.className = "stats";
+
+
+  stats.innerHTML = `
+    <div class="stat">
+      <strong>${record}</strong>
+      <span>Record</span>
+    </div>
+
+    <div class="stat">
+      <strong>0</strong>
+      <span>KO Wins</span>
+    </div>
+
+    <div class="stat">
+      <strong>0</strong>
+      <span>Submission Wins</span>
+    </div>
+
+    <div class="stat">
+      <strong>0</strong>
+      <span>Win Streak</span>
+    </div>
+  `;
+
+
+  details.appendChild(stats);
+
+
+  wrapper.appendChild(fighter);
+
+  wrapper.appendChild(details);
+
+
+  return wrapper;
 }
+
+
+function toggleDetails(fighter) {
+
+  const details = fighter.nextElementSibling;
+
+  details.classList.toggle("open");
+
+  fighter.classList.toggle("open");
+
+}
+
 </script>
 
 </body>
