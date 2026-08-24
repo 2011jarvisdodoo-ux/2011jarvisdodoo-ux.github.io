@@ -173,6 +173,22 @@
       height: 160px;
     }
 
+    .movement {
+      width: 65px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 900;
+      margin-right: 5px;
+    }
+
+    .movement.up {
+      color: #8fcf00;
+    }
+
+    .movement.down {
+      color: #c40000;
+    }
+
     .arrow {
       width: 55px;
       text-align: center;
@@ -270,6 +286,11 @@
       .champion .fighter-image {
         width: 105px;
         height: 110px;
+      }
+
+      .movement {
+        width: 45px;
+        font-size: 11px;
       }
 
       .arrow {
@@ -426,9 +447,8 @@ const divisions = [
   {
     name: "LIGHTWEIGHT",
     gender: "MEN",
-    champion: "Nickolas Tyson",
+    champion: "Cinnamon Jitmuangnon",
     image: "https://placehold.co/400x400",
-    interimChampion: "Cinnamon Jitmuangnon",
     fighters: [
       "Fyodqr Emeilanenko",
       "Usain Coan",
@@ -514,9 +534,9 @@ const divisions = [
       "Salem Rahim",
       "Leuk Udu",
       "Leuk Udu jr",
-      "Lopes Topuria",
       "Floyd Money",
-      "Stevey Stal"
+      "Stevey Stal",
+      { name: "Lopes Topuria", movement: -2 }
     ]
   },
 
@@ -601,7 +621,9 @@ divisions.forEach((division) => {
       ? "MEN'S RANKINGS"
       : "WOMEN'S RANKINGS";
 
-    rankingsContainer.appendChild(genderTitle);
+    rankingsContainer.appendChild(
+      genderTitle
+    );
   }
 
 
@@ -639,32 +661,27 @@ divisions.forEach((division) => {
       division.image
     );
 
-  divisionSection.appendChild(champion);
-
-
-  /* INTERIM CHAMPION */
-
-  if (division.interimChampion) {
-
-    const interim =
-      createFighter(
-        "IC",
-        division.interimChampion,
-        "INTERIM JCF CHAMPION",
-        false,
-        null
-      );
-
-    divisionSection.appendChild(interim);
-  }
+  divisionSection.appendChild(
+    champion
+  );
 
 
   /* #1 - #15 */
 
   division.fighters.forEach(
-    (name, index) => {
+    (fighterData, index) => {
 
       const rank = index + 1;
+
+      const name =
+        typeof fighterData === "string"
+        ? fighterData
+        : fighterData.name;
+
+      const movement =
+        typeof fighterData === "string"
+        ? 0
+        : fighterData.movement || 0;
 
       const fighter =
         createFighter(
@@ -672,7 +689,8 @@ divisions.forEach((division) => {
           name,
           "",
           false,
-          null
+          null,
+          movement
         );
 
       divisionSection.appendChild(
@@ -695,7 +713,8 @@ function createFighter(
   name,
   status,
   isChampion,
-  imageURL
+  imageURL,
+  movement = 0
 ) {
 
   const wrapper =
@@ -796,6 +815,32 @@ function createFighter(
 
   }
 
+
+  /* RANKING MOVEMENT */
+
+  if (movement !== 0) {
+
+    const movementElement =
+      document.createElement("div");
+
+    movementElement.className =
+      movement > 0
+      ? "movement up"
+      : "movement down";
+
+    movementElement.textContent =
+      movement > 0
+      ? "▲ " + movement
+      : "▼ " + Math.abs(movement);
+
+    fighter.appendChild(
+      movementElement
+    );
+
+  }
+
+
+  /* RIGHT ARROW */
 
   const arrow =
     document.createElement("div");
