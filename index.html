@@ -19,8 +19,6 @@
       color: #111;
     }
 
-    /* HEADER */
-
     header {
       background: #111;
       color: white;
@@ -58,8 +56,6 @@
       color: #d40000;
     }
 
-    /* HERO */
-
     .hero {
       background: white;
       padding: 65px 6% 55px;
@@ -80,8 +76,6 @@
       letter-spacing: -5px;
       line-height: .88;
     }
-
-    /* RANKINGS */
 
     .ranking {
       max-width: 1250px;
@@ -111,11 +105,9 @@
       text-transform: uppercase;
     }
 
-    /* FIGHTER ROW */
-
     .fighter {
       background: white;
-      min-height: 125px;
+      min-height: 90px;
       display: flex;
       align-items: center;
       position: relative;
@@ -168,13 +160,6 @@
       line-height: 1;
     }
 
-    .record {
-      margin-top: 7px;
-      color: #666;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
     .fighter-image {
       width: 155px;
       height: 125px;
@@ -193,52 +178,7 @@
       text-align: center;
       font-size: 25px;
       font-weight: bold;
-      transition: .2s;
     }
-
-    .fighter.open .arrow {
-      transform: rotate(180deg);
-    }
-
-    /* DETAILS */
-
-    .details {
-      display: none;
-      background: #171717;
-      color: white;
-      padding: 25px 40px;
-      border-top: 2px solid #d40000;
-    }
-
-    .details.open {
-      display: block;
-    }
-
-    .stats {
-      display: flex;
-      gap: 45px;
-      flex-wrap: wrap;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 21px;
-    }
-
-    .stat span {
-      color: #aaa;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* WOMEN'S SECTION */
-
-    .women-section {
-      margin-top: 80px;
-    }
-
-    /* FOOTER */
 
     footer {
       background: #111;
@@ -248,8 +188,6 @@
       font-size: 12px;
       margin-top: 20px;
     }
-
-    /* MOBILE */
 
     @media (max-width: 700px) {
 
@@ -293,7 +231,7 @@
       }
 
       .fighter {
-        min-height: 100px;
+        min-height: 75px;
       }
 
       .fighter.champion {
@@ -323,10 +261,6 @@
         font-size: 19px;
       }
 
-      .record {
-        font-size: 10px;
-      }
-
       .fighter-image {
         width: 85px;
         height: 90px;
@@ -342,22 +276,6 @@
         width: 32px;
         font-size: 20px;
       }
-
-      .details {
-        padding: 20px 15px;
-      }
-
-      .stats {
-        gap: 22px;
-      }
-
-      .stat strong {
-        font-size: 17px;
-      }
-
-      .stat span {
-        font-size: 8px;
-      }
     }
   </style>
 </head>
@@ -365,6 +283,7 @@
 <body>
 
 <header>
+
   <div class="logo">JCF</div>
 
   <nav>
@@ -374,16 +293,21 @@
     <a href="#">ATHLETES</a>
     <a href="#">NEWS</a>
   </nav>
+
 </header>
 
 
 <section class="hero">
-  <div class="small-title">OFFICIAL RANKINGS</div>
+
+  <div class="small-title">
+    OFFICIAL RANKINGS
+  </div>
 
   <h1>
     JCF ROBLOX<br>
     RANKINGS
   </h1>
+
 </section>
 
 
@@ -399,90 +323,278 @@
 
 const divisions = [
 
-  /* MEN'S DIVISIONS */
+  /* =========================
+     MEN'S RANKINGS
+     ========================= */
 
   {
     name: "HEAVYWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Josh Hokit",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Niko Verhoeven",
+      "Ciryil Gane",
+      "King Diaz",
+      "Crash Bandicoot",
+      "Waldo Cortes Acosta",
+      "Ronnie Lewis",
+      "Tallison Teixeira",
+      "Derrick Lewis",
+      "Alex Perieray",
+      "Silvia Dodoo",
+      "Brock Lesnar",
+      "Nickolas Tyson",
+      "Robel Despaigne",
+      "Drape Coo",
+      "Stevey Stal"
+    ]
   },
 
   {
     name: "LIGHT HEAVYWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Nickolas Tyson",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Josh Hokit",
+      "Santos Álvarez",
+      "Fyodqr Emeilanenko",
+      "Isreal Sinaya",
+      "Movsar Ankalaev",
+      "Tee Flocka",
+      "Eclipse Holland",
+      "Isreal Adesyanya",
+      "Raining B",
+      "Randi Couture",
+      "Rich Prochy",
+      "Uffwytz",
+      "Leony Smith",
+      "David Coret",
+      "Kanye"
+    ]
   },
 
   {
     name: "MIDDLEWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Eri Haney",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Gervonta Davis",
+      "Devin Haney",
+      "Biel Colosso",
+      "Micheal Page",
+      "Anderson Silva",
+      "Ronnie Lewis",
+      "Tysen Fury",
+      "Randi Couture",
+      "Andrew Tate",
+      "Tee Flocka",
+      "Denzel Harrington",
+      "Will Sr",
+      "Raining",
+      "Eclipse Holland",
+      "Stephen Thompson"
+    ]
   },
 
   {
     name: "WELTERWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "LEMONY PAUL",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "CRONOR MACGERVOR",
+      "MOVSAR ANKALAEV",
+      "TAGGZ Chandler",
+      "Andrew Tate",
+      "Silvia Dodoo",
+      "Rich Prochy",
+      "Randi Couture",
+      "Leuk Udu",
+      "Stephen Thompson",
+      "Jordan Davis",
+      "Leuk Udu jr",
+      "Leony Smith",
+      "Robel Despaigne",
+      "Shane Douglass",
+      "Drape Coo"
+    ]
   },
 
   {
     name: "LIGHTWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Nickolas Tyson",
+    image: "https://placehold.co/400x400",
+    interimChampion: "Cinnamon Jitmuangnon",
+    fighters: [
+      "Fyodqr Emeilanenko",
+      "Usain Coan",
+      "Taggz Chandler",
+      "Brady Ashford",
+      "Gervonta Davis",
+      "Lion Davis",
+      "Jordan Davis",
+      "Iwo Baraniewski",
+      "Uffwytz",
+      "Will Sr",
+      "CarKid",
+      "Biel Colosso",
+      "Tysen Fury",
+      "Shane Douglass",
+      "Isreal Sinaya"
+    ]
   },
 
   {
     name: "FEATHERWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Usman Nurmagomedov",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Sporkak",
+      "Sean O Malley",
+      "Shane Douglass",
+      "Manny Hernandez",
+      "Manuel Torres",
+      "Sean Strickland",
+      "Anderson Silva",
+      "Mike Perry",
+      "Leuk Udu",
+      "Salem Rahim",
+      "Raining",
+      "Lion Davis",
+      "Floyd Money",
+      "Stevey Stal",
+      "Leony Smith"
+    ]
   },
 
   {
     name: "BANTAMWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Kay Davis",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "DAFFYD BENDAVIDEZ",
+      "Cinnamon JITMUANGNON",
+      "Sean O Malley",
+      "Sean Strickland",
+      "Manuel Torres",
+      "Manny Hernandez",
+      "Tysen Fury",
+      "CarKid",
+      "Alexander Volkanovski",
+      "Micheal Page",
+      "Isreal Adesyanya",
+      "Ronnie Lewis",
+      "Tee Flocka",
+      "Eclipse Holland",
+      "Rich Prochy"
+    ]
   },
 
   {
     name: "FLYWEIGHT",
     gender: "MEN",
-    champion: "FIGHTER NAME"
+    champion: "Anderson Silva",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Sean Strickland",
+      "Iwo Baraniewski",
+      "Israel Adesyanya",
+      "Lion Davis",
+      "Sporkak",
+      "Ronny Lawler",
+      "Rodtang Usman",
+      "Sean O Malley",
+      "Israel Sinaya",
+      "Salem Rahim",
+      "Leuk Udu",
+      "Leuk Udu jr",
+      "Lopes Topuria",
+      "Floyd Money",
+      "Stevey Stal"
+    ]
   },
 
 
-  /* WOMEN'S DIVISIONS */
+  /* =========================
+     WOMEN'S RANKINGS
+     ========================= */
 
   {
     name: "WOMEN'S STRAWWEIGHT",
     gender: "WOMEN",
-    champion: "FIGHTER NAME"
+    champion: "Melissa Bellamy",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Ronda Rousey",
+      "Slay Taylor",
+      "Youst Tousty",
+      "Heshy Serrano",
+      "Enzzi Bridge",
+      "Queen Rose",
+      "Veony Perez",
+      "Amanda Ross",
+      "Selen Shields",
+      "Katie Shields",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD"
+    ]
   },
 
   {
     name: "WOMEN'S FLYWEIGHT",
     gender: "WOMEN",
-    champion: "FIGHTER NAME"
+    champion: "Yousty Tousty",
+    image: "https://placehold.co/400x400",
+    fighters: [
+      "Heshy Serrano",
+      "Enzzi Bridge",
+      "Melissa Bellamy",
+      "Katie Shields",
+      "Slay Taylor",
+      "Queen Rose",
+      "Amanda Smith",
+      "Kat Baumna",
+      "Selen Shields",
+      "Mosa Noust",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD"
+    ]
   }
 
 ];
 
 
-const rankingsContainer = document.getElementById("rankings");
+const rankingsContainer =
+  document.getElementById("rankings");
 
 let currentGender = "";
 
 
 divisions.forEach((division) => {
 
-  /* Add MEN'S / WOMEN'S heading */
+  /* MEN'S / WOMEN'S TITLE */
 
   if (division.gender !== currentGender) {
 
     currentGender = division.gender;
 
-    const genderTitle = document.createElement("div");
+    const genderTitle =
+      document.createElement("div");
 
-    genderTitle.className = "gender-title";
+    genderTitle.className =
+      "gender-title";
 
     genderTitle.textContent =
       division.gender === "MEN"
@@ -493,62 +605,106 @@ divisions.forEach((division) => {
   }
 
 
-  /* Division */
+  /* DIVISION */
 
-  const divisionSection = document.createElement("section");
+  const divisionSection =
+    document.createElement("section");
 
-  divisionSection.className = "division";
+  divisionSection.className =
+    "division";
 
 
-  const divisionTitle = document.createElement("div");
+  const divisionTitle =
+    document.createElement("div");
 
-  divisionTitle.className = "division-title";
+  divisionTitle.className =
+    "division-title";
 
-  divisionTitle.textContent = division.name;
+  divisionTitle.textContent =
+    division.name;
 
-  divisionSection.appendChild(divisionTitle);
+  divisionSection.appendChild(
+    divisionTitle
+  );
 
 
   /* CHAMPION */
 
-  const champion = createFighter(
-    "C",
-    division.champion,
-    "JCF CHAMPION",
-    "0-0-0",
-    true
-  );
+  const champion =
+    createFighter(
+      "C",
+      division.champion,
+      "JCF CHAMPION",
+      true,
+      division.image
+    );
 
   divisionSection.appendChild(champion);
 
 
-  /* RANKINGS 1-15 */
+  /* INTERIM CHAMPION */
 
-  for (let rank = 1; rank <= 15; rank++) {
+  if (division.interimChampion) {
 
-    const fighter = createFighter(
-      rank,
-      "FIGHTER NAME",
-      "",
-      "0-0-0",
-      false
-    );
+    const interim =
+      createFighter(
+        "IC",
+        division.interimChampion,
+        "INTERIM JCF CHAMPION",
+        false,
+        null
+      );
 
-    divisionSection.appendChild(fighter);
+    divisionSection.appendChild(interim);
   }
 
 
-  rankingsContainer.appendChild(divisionSection);
+  /* #1 - #15 */
+
+  division.fighters.forEach(
+    (name, index) => {
+
+      const rank = index + 1;
+
+      const fighter =
+        createFighter(
+          rank,
+          name,
+          "",
+          false,
+          null
+        );
+
+      divisionSection.appendChild(
+        fighter
+      );
+
+    }
+  );
+
+
+  rankingsContainer.appendChild(
+    divisionSection
+  );
 
 });
 
 
-function createFighter(rank, name, status, record, isChampion) {
+function createFighter(
+  rank,
+  name,
+  status,
+  isChampion,
+  imageURL
+) {
 
-  const wrapper = document.createElement("div");
+  const wrapper =
+    document.createElement("div");
 
 
-  const fighter = document.createElement("div");
+  const fighter =
+    document.createElement("div");
+
 
   fighter.className =
     isChampion
@@ -556,133 +712,111 @@ function createFighter(rank, name, status, record, isChampion) {
     : "fighter";
 
 
-  fighter.onclick = function() {
-    toggleDetails(fighter);
-  };
+  const rankElement =
+    document.createElement("div");
+
+  rankElement.className =
+    "rank";
+
+  rankElement.textContent =
+    rank;
 
 
-  const rankElement = document.createElement("div");
+  const info =
+    document.createElement("div");
 
-  rankElement.className = "rank";
-
-  rankElement.textContent = rank;
-
-
-  const info = document.createElement("div");
-
-  info.className = "fighter-info";
+  info.className =
+    "fighter-info";
 
 
   if (status) {
 
-    const statusElement = document.createElement("div");
+    const statusElement =
+      document.createElement("div");
 
-    statusElement.className = "status";
+    statusElement.className =
+      "status";
 
-    statusElement.textContent = status;
+    statusElement.textContent =
+      status;
 
-    info.appendChild(statusElement);
+    info.appendChild(
+      statusElement
+    );
+
   }
 
 
-  const nameElement = document.createElement("div");
+  const nameElement =
+    document.createElement("div");
 
-  nameElement.className = "fighter-name";
+  nameElement.className =
+    "fighter-name";
 
-  nameElement.textContent = name;
+  nameElement.textContent =
+    name;
 
-  info.appendChild(nameElement);
-
-
-  const recordElement = document.createElement("div");
-
-  recordElement.className = "record";
-
-  recordElement.textContent = record;
-
-  info.appendChild(recordElement);
+  info.appendChild(
+    nameElement
+  );
 
 
-  const image = document.createElement("img");
+  fighter.appendChild(
+    rankElement
+  );
 
-  image.className = "fighter-image";
-
-  image.src = "https://placehold.co/300x300";
-
-  image.alt = "JCF Roblox fighter";
-
-
-  const arrow = document.createElement("div");
-
-  arrow.className = "arrow";
-
-  arrow.textContent = "⌄";
+  fighter.appendChild(
+    info
+  );
 
 
-  fighter.appendChild(rankElement);
+  /* ONLY CHAMPIONS GET IMAGES */
 
-  fighter.appendChild(info);
+  if (
+    isChampion &&
+    imageURL
+  ) {
 
-  fighter.appendChild(image);
+    const image =
+      document.createElement("img");
 
-  fighter.appendChild(arrow);
+    image.className =
+      "fighter-image";
 
+    image.src =
+      imageURL;
 
-  /* DETAILS */
+    image.alt =
+      name +
+      " - JCF Champion";
 
-  const details = document.createElement("div");
+    fighter.appendChild(
+      image
+    );
 
-  details.className = "details";
-
-
-  const stats = document.createElement("div");
-
-  stats.className = "stats";
-
-
-  stats.innerHTML = `
-    <div class="stat">
-      <strong>${record}</strong>
-      <span>Record</span>
-    </div>
-
-    <div class="stat">
-      <strong>0</strong>
-      <span>KO Wins</span>
-    </div>
-
-    <div class="stat">
-      <strong>0</strong>
-      <span>Submission Wins</span>
-    </div>
-
-    <div class="stat">
-      <strong>0</strong>
-      <span>Win Streak</span>
-    </div>
-  `;
+  }
 
 
-  details.appendChild(stats);
+  const arrow =
+    document.createElement("div");
+
+  arrow.className =
+    "arrow";
+
+  arrow.textContent =
+    "›";
+
+  fighter.appendChild(
+    arrow
+  );
 
 
-  wrapper.appendChild(fighter);
-
-  wrapper.appendChild(details);
+  wrapper.appendChild(
+    fighter
+  );
 
 
   return wrapper;
-}
-
-
-function toggleDetails(fighter) {
-
-  const details = fighter.nextElementSibling;
-
-  details.classList.toggle("open");
-
-  fighter.classList.toggle("open");
-
 }
 
 </script>
