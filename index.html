@@ -352,7 +352,7 @@ const divisions = [
     name: "HEAVYWEIGHT",
     gender: "MEN",
     champion: "Josh Hokit",
-    image: "https://placehold.co/400x400",
+    image: "josh-hok.png",
     fighters: [
       "Niko Verhoeven",
       "Ciryil Gane",
@@ -372,11 +372,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "LIGHT HEAVYWEIGHT",
     gender: "MEN",
-    champion: "Nickolas Tyson",
-    image: "https://placehold.co/400x400",
+    champion: null,
+    image: null,
     fighters: [
       "Josh Hokit",
       "Santos Álvarez",
@@ -396,11 +397,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "MIDDLEWEIGHT",
     gender: "MEN",
     champion: "Eri Haney",
-    image: "https://placehold.co/400x400",
+    image: "Eri-haney.png",
     fighters: [
       "Gervonta Davis",
       "Devin Haney",
@@ -420,11 +422,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "WELTERWEIGHT",
     gender: "MEN",
     champion: "LEMONY PAUL",
-    image: "https://placehold.co/400x400",
+    image: "lemon-paul.png",
     fighters: [
       "CRONOR MACGERVOR",
       "MOVSAR ANKALAEV",
@@ -444,11 +447,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "LIGHTWEIGHT",
     gender: "MEN",
     champion: "Cinnamon Jitmuangnon",
-    image: "https://placehold.co/400x400",
+    image: "cinnamon-jum.png",
     fighters: [
       "Fyodqr Emeilanenko",
       "Usain Coan",
@@ -468,11 +472,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "FEATHERWEIGHT",
     gender: "MEN",
     champion: "Usman Nurmagomedov",
-    image: "https://placehold.co/400x400",
+    image: "usman-nurmagomedov.png",
     fighters: [
       "Sporkak",
       "Sean O Malley",
@@ -492,11 +497,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "BANTAMWEIGHT",
     gender: "MEN",
     champion: "Kay Davis",
-    image: "https://placehold.co/400x400",
+    image: "kay-davis.png",
     fighters: [
       "DAFFYD BENDAVIDEZ",
       "Cinnamon JITMUANGNON",
@@ -516,11 +522,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "FLYWEIGHT",
     gender: "MEN",
     champion: "Anderson Silva",
-    image: "https://placehold.co/400x400",
+    image: "anderson-silva.png",
     fighters: [
       "Sean Strickland",
       "Iwo Baraniewski",
@@ -536,7 +543,10 @@ const divisions = [
       "Leuk Udu jr",
       "Floyd Money",
       "Stevey Stal",
-      { name: "Lopes Topuria", movement: -2 }
+      {
+        name: "Lopes Topuria",
+        movement: -2
+      }
     ]
   },
 
@@ -549,7 +559,7 @@ const divisions = [
     name: "WOMEN'S STRAWWEIGHT",
     gender: "WOMEN",
     champion: "Melissa Bellamy",
-    image: "https://placehold.co/400x400",
+    image: "Melissa-bellamy.png",
     fighters: [
       "Ronda Rousey",
       "Slay Taylor",
@@ -569,11 +579,12 @@ const divisions = [
     ]
   },
 
+
   {
     name: "WOMEN'S FLYWEIGHT",
     gender: "WOMEN",
     champion: "Yousty Tousty",
-    image: "https://placehold.co/400x400",
+    image: "yousty-tousty.png",
     fighters: [
       "Heshy Serrano",
       "Enzzi Bridge",
@@ -650,20 +661,39 @@ divisions.forEach((division) => {
   );
 
 
-  /* CHAMPION */
+  /* CHAMPION / VACANT */
 
-  const champion =
-    createFighter(
-      "C",
-      division.champion,
-      "JCF CHAMPION",
-      true,
-      division.image
+  if (division.champion) {
+
+    const champion =
+      createFighter(
+        "C",
+        division.champion,
+        "JCF CHAMPION",
+        true,
+        division.image
+      );
+
+    divisionSection.appendChild(
+      champion
     );
 
-  divisionSection.appendChild(
-    champion
-  );
+  } else {
+
+    const vacant =
+      createFighter(
+        "C",
+        "VACANT",
+        "JCF TITLE VACANT",
+        true,
+        null
+      );
+
+    divisionSection.appendChild(
+      vacant
+    );
+
+  }
 
 
   /* #1 - #15 */
@@ -789,7 +819,7 @@ function createFighter(
   );
 
 
-  /* ONLY CHAMPIONS GET IMAGES */
+  /* CHAMPION IMAGE */
 
   if (
     isChampion &&
