@@ -352,7 +352,7 @@ const divisions = [
     name: "HEAVYWEIGHT",
     gender: "MEN",
     champion: "Josh Hokit",
-    image: "josh-hok.png",
+    image: "images/josh-hok.png",
     fighters: [
       "Niko Verhoeven",
       "Ciryil Gane",
@@ -372,12 +372,10 @@ const divisions = [
     ]
   },
 
-
   {
     name: "LIGHT HEAVYWEIGHT",
     gender: "MEN",
     champion: null,
-    image: null,
     fighters: [
       "Josh Hokit",
       "Santos Álvarez",
@@ -397,12 +395,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "MIDDLEWEIGHT",
     gender: "MEN",
     champion: "Eri Haney",
-    image: "Eri-haney.png",
+    image: "images/Eri-haney.png",
     fighters: [
       "Gervonta Davis",
       "Devin Haney",
@@ -422,12 +419,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "WELTERWEIGHT",
     gender: "MEN",
     champion: "LEMONY PAUL",
-    image: "lemon-paul.png",
+    image: "images/lemon-paul.png",
     fighters: [
       "CRONOR MACGERVOR",
       "MOVSAR ANKALAEV",
@@ -447,12 +443,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "LIGHTWEIGHT",
     gender: "MEN",
     champion: "Cinnamon Jitmuangnon",
-    image: "cinnamon-jum.png",
+    image: "images/cinnamon-jum.png",
     fighters: [
       "Fyodqr Emeilanenko",
       "Usain Coan",
@@ -472,12 +467,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "FEATHERWEIGHT",
     gender: "MEN",
     champion: "Usman Nurmagomedov",
-    image: "usman-nurmagomedov.png",
+    image: "images/usman-nurmagomedov.png",
     fighters: [
       "Sporkak",
       "Sean O Malley",
@@ -497,12 +491,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "BANTAMWEIGHT",
     gender: "MEN",
     champion: "Kay Davis",
-    image: "kay-davis.png",
+    image: "images/kay-davis.png",
     fighters: [
       "DAFFYD BENDAVIDEZ",
       "Cinnamon JITMUANGNON",
@@ -522,12 +515,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "FLYWEIGHT",
     gender: "MEN",
     champion: "Anderson Silva",
-    image: "anderson-silva.png",
+    image: "images/anderson-silva.png",
     fighters: [
       "Sean Strickland",
       "Iwo Baraniewski",
@@ -559,7 +551,7 @@ const divisions = [
     name: "WOMEN'S STRAWWEIGHT",
     gender: "WOMEN",
     champion: "Melissa Bellamy",
-    image: "Melissa-bellamy.png",
+    image: "images/melissa-bellamy.png",
     fighters: [
       "Ronda Rousey",
       "Slay Taylor",
@@ -579,12 +571,11 @@ const divisions = [
     ]
   },
 
-
   {
     name: "WOMEN'S FLYWEIGHT",
     gender: "WOMEN",
     champion: "Yousty Tousty",
-    image: "yousty-tousty.png",
+    image: "images/yousty-tousty.png",
     fighters: [
       "Heshy Serrano",
       "Enzzi Bridge",
@@ -661,7 +652,7 @@ divisions.forEach((division) => {
   );
 
 
-  /* CHAMPION / VACANT */
+  /* CHAMPION */
 
   if (division.champion) {
 
@@ -680,11 +671,13 @@ divisions.forEach((division) => {
 
   } else {
 
+    /* VACANT CHAMPIONSHIP */
+
     const vacant =
       createFighter(
         "C",
         "VACANT",
-        "JCF TITLE VACANT",
+        "JCF CHAMPIONSHIP",
         true,
         null
       );
