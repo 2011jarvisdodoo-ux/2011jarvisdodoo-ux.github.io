@@ -201,29 +201,17 @@
        ========================= */
 
     .p4p-section {
-      margin-bottom: 75px;
+      margin-top: 30px;
+      margin-bottom: 70px;
     }
 
-    .p4p-header {
-      background: #111;
-      color: white;
-      padding: 28px 30px;
+    .p4p-title {
+      font-size: 32px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-bottom: 4px solid #111;
+      padding-bottom: 12px;
       margin-bottom: 0;
-    }
-
-    .p4p-header-small {
-      color: #d40000;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 7px;
-    }
-
-    .p4p-header-title {
-      font-size: clamp(32px, 5vw, 55px);
-      font-weight: 900;
-      letter-spacing: -2px;
-      line-height: 1;
     }
 
     .p4p-gender {
@@ -231,16 +219,18 @@
       font-weight: 900;
       letter-spacing: 2px;
       color: #d40000;
-      margin: 35px 0 15px;
-      padding-bottom: 12px;
+      margin: 35px 0 0;
+      padding: 14px 0;
       border-bottom: 3px solid #111;
     }
 
     .p4p-fighter {
       background: white;
-      min-height: 90px;
+      min-height: 105px;
       display: flex;
       align-items: center;
+      position: relative;
+      overflow: hidden;
       border-bottom: 1px solid #ddd;
       transition: .2s;
     }
@@ -253,7 +243,7 @@
       width: 85px;
       min-width: 85px;
       text-align: center;
-      font-size: 25px;
+      font-size: 27px;
       font-weight: 900;
       color: #999;
     }
@@ -264,7 +254,7 @@
     }
 
     .p4p-name {
-      font-size: clamp(19px, 3vw, 30px);
+      font-size: clamp(20px, 3vw, 32px);
       font-weight: 900;
       text-transform: uppercase;
       line-height: 1;
@@ -273,22 +263,26 @@
 
     .p4p-record {
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 900;
       color: #777;
-      line-height: 1.35;
+      letter-spacing: .5px;
       text-transform: uppercase;
     }
 
-    .p4p-champion {
+    .p4p-status {
       color: #d40000;
+      font-size: 10px;
       font-weight: 900;
+      letter-spacing: 1px;
+      margin-top: 5px;
     }
 
-    .p4p-arrow {
-      width: 55px;
-      text-align: center;
-      font-size: 25px;
-      font-weight: bold;
+    .p4p-image {
+      width: 120px;
+      height: 100px;
+      object-fit: contain;
+      align-self: flex-end;
+      margin-right: 35px;
     }
 
     footer {
@@ -393,22 +387,17 @@
         font-size: 20px;
       }
 
-      /* P4P MOBILE */
+      /* MOBILE P4P */
 
       .p4p-section {
-        margin-bottom: 50px;
+        margin-top: 20px;
       }
 
-      .p4p-header {
-        padding: 22px 18px;
-      }
-
-      .p4p-header-title {
-        font-size: 34px;
+      .p4p-title {
+        font-size: 25px;
       }
 
       .p4p-gender {
-        margin: 25px 0 12px;
         font-size: 13px;
       }
 
@@ -419,7 +408,7 @@
       .p4p-rank {
         width: 42px;
         min-width: 42px;
-        font-size: 17px;
+        font-size: 18px;
       }
 
       .p4p-info {
@@ -427,18 +416,21 @@
       }
 
       .p4p-name {
-        font-size: 17px;
-        margin-bottom: 5px;
+        font-size: 18px;
       }
 
       .p4p-record {
-        font-size: 8px;
-        line-height: 1.3;
+        font-size: 9px;
       }
 
-      .p4p-arrow {
-        width: 32px;
-        font-size: 20px;
+      .p4p-status {
+        font-size: 8px;
+      }
+
+      .p4p-image {
+        width: 80px;
+        height: 75px;
+        margin-right: 0;
       }
     }
   </style>
@@ -486,208 +478,9 @@
 
 <script>
 
-/* =========================
-   POUND FOR POUND RANKINGS
-   ========================= */
-
-const poundForPound = {
-
-  men: [
-
-    {
-      name: "KAY DAVIS",
-      record: "9-0-0 (8 KOS)",
-      status: "JCF BANTAMWEIGHT CHAMPION"
-      image: "images/kay-davis.png 
-    },
-
-    {
-      name: "CINNAMON JITMUANGNON",
-      record: "9-0-0 (6 KOS)",
-      status: "JCF LIGHTWEIGHT CHAMPION"
-    },
-
-    {
-      name: "JOSH HOKIT",
-      record: "13-0-0 (9 KOS)",
-      status: "JCF HEAVYWEIGHT CHAMPION"
-    },
-
-    {
-      name: "USMAN NURMAGOMEDOV",
-      record: "7-0-0 (6 KOS)",
-      status: "JCF FEATHERWEIGHT CHAMPION"
-    },
-
-    {
-      name: "ERI HANEY",
-      record: "23-2-1 (12 KOS)",
-      status: "JCF MIDDLEWEIGHT CHAMPION"
-    },
-
-    {
-      name: "LEMONY PAUL",
-      record: "14-3-1 (6 KOS)",
-      status: "JCF WELTERWEIGHT CHAMPION"
-    },
-
-    {
-      name: "ANDERSON SILVA",
-      record: "9-2-2 (5 KOS)",
-      status: "JCF FLYWEIGHT CHAMPION"
-    },
-
-    {
-      name: "NIKO VERHOEVEN",
-      record: "10-0-0 (8 KOS)",
-      status: ""
-    },
-
-    {
-      name: "CRONOR MACGERVOR",
-      record: "6-0-0 (5 KOS)",
-      status: ""
-    },
-
-    {
-      name: "DAFFYD BENDAVIDEZ",
-      record: "10-1-2 (4 KOS)",
-      status: ""
-    },
-
-    {
-      name: "USAIN COAN",
-      record: "9-2-1 (1 KOS)",
-      status: "BMF LIGHTWEIGHT CHAMPION"
-    },
-
-    {
-      name: "BRADY ASHFORD",
-      record: "8-1-0 (8 KOS)",
-      status: ""
-    },
-
-    {
-      name: "TAGGZ CHANDLER",
-      record: "6-0-0 (6 KOS)",
-      status: ""
-    },
-
-    {
-      name: "GERVONTA DAVIS",
-      record: "17-5-0 (9 KOS)",
-      status: ""
-    },
-
-    {
-      name: "FYODQR EMEILANENKO",
-      record: "9-1-0 (3 KOS)",
-      status: ""
-    },
-
-    {
-      name: "TYSEN FURY",
-      record: "9-1-0 (6 KOS)",
-      status: ""
-    },
-
-    {
-      name: "SHANE DOUGLASS",
-      record: "15-4-0 (13 KOS)",
-      status: ""
-    },
-
-    {
-      name: "MOVSAR ANKALAEV",
-      record: "16-5-0 (7 KOS)",
-      status: ""
-    },
-
-    {
-      name: "WALDO CORTES ACOSTA",
-      record: "5-0-0 (2 KOS)",
-      status: ""
-    },
-
-    {
-      name: "CRASH BANDICOOT",
-      record: "20-3-2 (20 KOS)",
-      status: ""
-    }
-
-  ],
-
-  women: [
-
-    {
-      name: "MELISSA BELLAMY",
-      record: "27-0-0 (20 KOS)",
-      status: "JCF WOMEN'S STRAWWEIGHT CHAMPION"
-       image: "images/Melissa-bellamy.png"
-    },
-
-    {
-      name: "SLAY TAYLOR",
-      record: "14-3-0 (5 KOS)",
-      status: "BMF WOMEN'S STRAWWEIGHT CHAMPION"
-    },
-
-    {
-      name: "YOUSTY TOUSTY",
-      record: "8-2-0 (3 KOS)",
-      status: "JCF WOMEN'S FLYWEIGHT CHAMPION"
-    },
-
-    {
-      name: "QUEEN DIANA",
-      record: "4-0-0 (2 KOS)",
-      status: ""
-    },
-
-    {
-      name: "KATIE SHIELDS",
-      record: "7-1-0 (1 KOS)",
-      status: ""
-    },
-
-    {
-      name: "VEONY PEREZ",
-      record: "6-1-2 (2 KOS)",
-      status: ""
-    },
-
-    {
-      name: "AMANDA ROSS",
-      record: "7-2-0 (2 KOS)",
-      status: ""
-    },
-
-    {
-      name: "RONDA ROUSEY",
-      record: "6-1-0 (0 KOS)",
-      status: ""
-    },
-
-    {
-      name: "SELEN SHIELDS",
-      record: "7-2-1 (1 KOS)",
-      status: ""
-    },
-
-    {
-      name: "MOSA NOUST",
-      record: "3-0-0 (2 KOS)",
-      status: ""
-    }
-
-  ]
-
-};
-
-
-/* =========================
-   NORMAL DIVISION RANKINGS
-   ========================= */
+/* =========================================================
+   DIVISIONAL RANKINGS
+   ========================================================= */
 
 const divisions = [
 
@@ -722,7 +515,7 @@ const divisions = [
     fighters: [
       "Josh Hokit",
       "Santos Álvarez",
-      "FYODQR EMEILANENKO",
+      "FYODQR EMELIANENKO",
       "Isreal Sinaya",
       "Movsar Ankalaev",
       "Tee Flocka",
@@ -792,7 +585,7 @@ const divisions = [
     champion: "Cinnamon Jitmuangnon",
     image: "images/cinnamon-jum.png",
     fighters: [
-      "FYODQR EMEILANENKO",
+      "FYODQR EMELIANENKO",
       "Usain Coan",
       "Taggz Chandler",
       "Brady Ashford",
@@ -963,252 +756,198 @@ const divisions = [
 ];
 
 
+/* =========================================================
+   POUND-FOR-POUND RANKINGS
+   ========================================================= */
+
+const poundForPound = {
+
+  men: [
+
+    {
+      name: "KAY DAVIS",
+      record: "9-0-0 (8 KOS)",
+      status: "JCF BANTAMWEIGHT CHAMPION",
+      image: "images/kay-davis.png"
+    },
+
+    {
+      name: "CINNAMON JITMUANGNON",
+      record: "9-0-0 (6 KOS)",
+      status: "JCF LIGHTWEIGHT CHAMPION"
+    },
+
+    {
+      name: "JOSH HOKIT",
+      record: "13-0-0 (9 KOS)",
+      status: "JCF HEAVYWEIGHT CHAMPION"
+    },
+
+    {
+      name: "USMAN NURMAGOMEDOV",
+      record: "7-0-0 (6 KOS)",
+      status: "JCF FEATHERWEIGHT CHAMPION"
+    },
+
+    {
+      name: "ERI HANEY",
+      record: "23-2-1 (12 KOS)",
+      status: "JCF MIDDLEWEIGHT CHAMPION"
+    },
+
+    {
+      name: "LEMONY PAUL",
+      record: "14-3-1 (6 KOS)",
+      status: "JCF WELTERWEIGHT CHAMPION"
+    },
+
+    {
+      name: "ANDERSON SILVA",
+      record: "9-2-2 (5 KOS)",
+      status: "JCF FLYWEIGHT CHAMPION"
+    },
+
+    {
+      name: "NIKO VERHOEVEN",
+      record: "10-0-0 (8 KOS)"
+    },
+
+    {
+      name: "CRONOR MACGERVOR",
+      record: "6-0-0 (5 KOS)"
+    },
+
+    {
+      name: "DAFFYD BENDAVIDEZ",
+      record: "10-1-2 (4 KOS)"
+    },
+
+    {
+      name: "USAIN COAN",
+      record: "9-2-1 (1 KOS)",
+      status: "BMF LIGHTWEIGHT CHAMPION"
+    },
+
+    {
+      name: "BRADY ASHFORD",
+      record: "8-1-0 (8 KOS)"
+    },
+
+    {
+      name: "TAGGZ CHANDLER",
+      record: "6-0-0 (6 KOS)"
+    },
+
+    {
+      name: "GERVONTA DAVIS",
+      record: "17-5-0 (9 KOS)"
+    },
+
+    {
+      name: "FYQDOR EMEILANENKO",
+      record: "9-1-0 (3 KOS)"
+    },
+
+    {
+      name: "TYSEN FURY",
+      record: "9-1-0 (6 KOS)"
+    },
+
+    {
+      name: "SHANE DOUGLASS",
+      record: "15-4-0 (13 KOS)"
+    },
+
+    {
+      name: "MOVSAR ANKALAEV",
+      record: "16-5-0 (7 KOS)"
+    },
+
+    {
+      name: "WALDO CORTES ACOSTA",
+      record: "5-0-0 (2 KOS)"
+    },
+
+    {
+      name: "CRASH BANDICOOT",
+      record: "20-3-2 (20 KOS)"
+    }
+
+  ],
+
+
+  women: [
+
+    {
+      name: "MELISSA BELLAMY",
+      record: "27-0-0 (20 KOS)",
+      status: "JCF WOMEN'S STRAWWEIGHT CHAMPION",
+      image: "images/Melissa-bellamy.png"
+    },
+
+    {
+      name: "SLAY TAYLOR",
+      record: "14-3-0 (5 KOS)",
+      status: "BMF WOMEN'S STRAWWEIGHT CHAMPION"
+    },
+
+    {
+      name: "YOUSTY TOUSTY",
+      record: "8-2-0 (3 KOS)",
+      status: "JCF WOMEN'S FLYWEIGHT CHAMPION"
+    },
+
+    {
+      name: "QUEEN DIANA",
+      record: "4-0-0 (2 KOS)"
+    },
+
+    {
+      name: "KATIE SHIELDS",
+      record: "7-1-0 (1 KOS)"
+    },
+
+    {
+      name: "VEONY PEREZ",
+      record: "6-1-2 (2 KOS)"
+    },
+
+    {
+      name: "AMANDA ROSS",
+      record: "7-2-0 (2 KOS)"
+    },
+
+    {
+      name: "RONDA ROUSEY",
+      record: "6-1-0 (0 KOS)"
+    },
+
+    {
+      name: "SELEN SHIELDS",
+      record: "7-2-1 (1 KOS)"
+    },
+
+    {
+      name: "MOSA NOUST",
+      record: "3-0-0 (2 KOS)"
+    }
+
+  ]
+
+};
+
+
 const rankingsContainer =
   document.getElementById("rankings");
-
-
-/* =========================
-   CREATE P4P SECTION
-   ========================= */
-
-function createP4P() {
-
-  const section =
-    document.createElement("section");
-
-  section.className =
-    "p4p-section";
-
-
-  const header =
-    document.createElement("div");
-
-  header.className =
-    "p4p-header";
-
-
-  const headerSmall =
-    document.createElement("div");
-
-  headerSmall.className =
-    "p4p-header-small";
-
-  headerSmall.textContent =
-    "OFFICIAL JCF RANKINGS";
-
-
-  const headerTitle =
-    document.createElement("div");
-
-  headerTitle.className =
-    "p4p-header-title";
-
-  headerTitle.textContent =
-    "POUND-FOR-POUND";
-
-
-  header.appendChild(
-    headerSmall
-  );
-
-  header.appendChild(
-    headerTitle
-  );
-
-  section.appendChild(
-    header
-  );
-
-
-  /* MEN */
-
-  const menTitle =
-    document.createElement("div");
-
-  menTitle.className =
-    "p4p-gender";
-
-  menTitle.textContent =
-    "MEN'S P4P RANKINGS";
-
-  section.appendChild(
-    menTitle
-  );
-
-
-  poundForPound.men.forEach(
-    (fighter, index) => {
-
-      section.appendChild(
-        createP4PFighter(
-          index + 1,
-          fighter
-        )
-      );
-
-    }
-  );
-
-
-  /* WOMEN */
-
-  const womenTitle =
-    document.createElement("div");
-
-  womenTitle.className =
-    "p4p-gender";
-
-  womenTitle.textContent =
-    "WOMEN'S P4P RANKINGS";
-
-  section.appendChild(
-    womenTitle
-  );
-
-
-  poundForPound.women.forEach(
-    (fighter, index) => {
-
-      section.appendChild(
-        createP4PFighter(
-          index + 1,
-          fighter
-        )
-      );
-
-    }
-  );
-
-
-  rankingsContainer.appendChild(
-    section
-  );
-
-}
-
-
-/* =========================
-   CREATE P4P FIGHTER
-   ========================= */
-
-function createP4PFighter(
-  rank,
-  fighter
-) {
-
-  const row =
-    document.createElement("div");
-
-  row.className =
-    "p4p-fighter";
-
-
-  const rankElement =
-    document.createElement("div");
-
-  rankElement.className =
-    "p4p-rank";
-
-  rankElement.textContent =
-    rank;
-
-
-  const info =
-    document.createElement("div");
-
-  info.className =
-    "p4p-info";
-
-
-  const name =
-    document.createElement("div");
-
-  name.className =
-    "p4p-name";
-
-  name.textContent =
-    fighter.name;
-
-
-  const record =
-    document.createElement("div");
-
-  record.className =
-    "p4p-record";
-
-  record.textContent =
-    fighter.record;
-
-
-  info.appendChild(
-    name
-  );
-
-  info.appendChild(
-    record
-  );
-
-
-  if (fighter.status) {
-
-    const status =
-      document.createElement("div");
-
-    status.className =
-      "p4p-record p4p-champion";
-
-    status.textContent =
-      fighter.status;
-
-    info.appendChild(
-      status
-    );
-
-  }
-
-
-  const arrow =
-    document.createElement("div");
-
-  arrow.className =
-    "p4p-arrow";
-
-  arrow.textContent =
-    "›";
-
-
-  row.appendChild(
-    rankElement
-  );
-
-  row.appendChild(
-    info
-  );
-
-  row.appendChild(
-    arrow
-  );
-
-
-  return row;
-}
-
-
-/* CREATE P4P FIRST */
-
-createP4P();
-
-
-/* =========================
-   CREATE NORMAL RANKINGS
-   ========================= */
 
 let currentGender = "";
 
 
-divisions.forEach((division) => {
+/* =========================================================
+   CREATE DIVISIONAL RANKINGS
+   ========================================================= */
 
-  /* MEN'S / WOMEN'S TITLE */
+divisions.forEach((division) => {
 
   if (division.gender !== currentGender) {
 
@@ -1228,13 +967,235 @@ divisions.forEach((division) => {
     rankingsContainer.appendChild(
       genderTitle
     );
-
   }
 
-
-  /* DIVISION */
 
   const divisionSection =
     document.createElement("section");
 
-  divisionSection.clas
+  divisionSection.className =
+    "division";
+
+
+  const divisionTitle =
+    document.createElement("div");
+
+  divisionTitle.className =
+    "division-title";
+
+  divisionTitle.textContent =
+    division.name;
+
+  divisionSection.appendChild(
+    divisionTitle
+  );
+
+
+  /* CHAMPION */
+
+  if (division.champion) {
+
+    const champion =
+      createFighter(
+        "C",
+        division.champion,
+        "JCF CHAMPION",
+        true,
+        division.image
+      );
+
+    divisionSection.appendChild(
+      champion
+    );
+
+  } else {
+
+    const vacant =
+      createFighter(
+        "C",
+        "VACANT",
+        "JCF CHAMPIONSHIP",
+        true,
+        null
+      );
+
+    divisionSection.appendChild(
+      vacant
+    );
+  }
+
+
+  /* #1 - #15 */
+
+  division.fighters.forEach(
+    (fighterData, index) => {
+
+      const rank = index + 1;
+
+      const name =
+        typeof fighterData === "string"
+        ? fighterData
+        : fighterData.name;
+
+      const movement =
+        typeof fighterData === "string"
+        ? 0
+        : fighterData.movement || 0;
+
+      const fighter =
+        createFighter(
+          rank,
+          name,
+          "",
+          false,
+          null,
+          movement
+        );
+
+      divisionSection.appendChild(
+        fighter
+      );
+    }
+  );
+
+
+  rankingsContainer.appendChild(
+    divisionSection
+  );
+
+});
+
+
+/* =========================================================
+   POUND-FOR-POUND SECTION
+   ========================================================= */
+
+const p4pSection =
+  document.createElement("section");
+
+p4pSection.className =
+  "p4p-section";
+
+
+const p4pTitle =
+  document.createElement("div");
+
+p4pTitle.className =
+  "p4p-title";
+
+p4pTitle.textContent =
+  "POUND-FOR-POUND RANKINGS";
+
+p4pSection.appendChild(
+  p4pTitle
+);
+
+
+/* MEN */
+
+const menTitle =
+  document.createElement("div");
+
+menTitle.className =
+  "p4p-gender";
+
+menTitle.textContent =
+  "MEN";
+
+p4pSection.appendChild(
+  menTitle
+);
+
+
+poundForPound.men.forEach(
+  (fighter, index) => {
+
+    const row =
+      createP4PFighter(
+        index + 1,
+        fighter
+      );
+
+    p4pSection.appendChild(
+      row
+    );
+  }
+);
+
+
+/* WOMEN */
+
+const womenTitle =
+  document.createElement("div");
+
+womenTitle.className =
+  "p4p-gender";
+
+womenTitle.textContent =
+  "WOMEN";
+
+p4pSection.appendChild(
+  womenTitle
+);
+
+
+poundForPound.women.forEach(
+  (fighter, index) => {
+
+    const row =
+      createP4PFighter(
+        index + 1,
+        fighter
+      );
+
+    p4pSection.appendChild(
+      row
+    );
+  }
+);
+
+
+rankingsContainer.appendChild(
+  p4pSection
+);
+
+
+/* =========================================================
+   CREATE NORMAL FIGHTER
+   ========================================================= */
+
+function createFighter(
+  rank,
+  name,
+  status,
+  isChampion,
+  imageURL,
+  movement = 0
+) {
+
+  const wrapper =
+    document.createElement("div");
+
+
+  const fighter =
+    document.createElement("div");
+
+
+  fighter.className =
+    isChampion
+    ? "fighter champion"
+    : "fighter";
+
+
+  const rankElement =
+    document.createElement("div");
+
+  rankElement.className =
+    "rank";
+
+  rankElement.textContent =
+    rank;
+
+
+  const info =
+    document.createElement(
