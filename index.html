@@ -285,6 +285,37 @@
       margin-right: 35px;
     }
 
+    /* =========================
+       DISCORD TAB
+       ========================= */
+
+    .discord-tab {
+      position: fixed;
+      left: 0;
+      bottom: 20px;
+      z-index: 9999;
+
+      background: #111;
+      color: white;
+      text-decoration: none;
+
+      padding: 13px 20px;
+      border-radius: 0 8px 8px 0;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .5px;
+
+      box-shadow: 0 4px 15px rgba(0,0,0,.25);
+      transition: .2s;
+    }
+
+    .discord-tab:hover {
+      background: #333;
+      padding-left: 24px;
+    }
+
     footer {
       background: #111;
       color: #888;
@@ -293,6 +324,10 @@
       font-size: 12px;
       margin-top: 20px;
     }
+
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 700px) {
 
@@ -387,8 +422,6 @@
         font-size: 20px;
       }
 
-      /* MOBILE P4P */
-
       .p4p-section {
         margin-top: 20px;
       }
@@ -432,11 +465,31 @@
         height: 75px;
         margin-right: 0;
       }
+
+      .discord-tab {
+        bottom: 15px;
+        padding: 11px 15px;
+        font-size: 10px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+<!-- =========================
+     DISCORD TAB
+     ========================= -->
+
+<a
+  href="https://discord.gg/GvhcReah9c"
+  class="discord-tab"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  💬 JOIN OUR DISCORD
+</a>
+
 
 <header>
 
@@ -700,7 +753,6 @@ const divisions = [
     ]
   },
 
-
   /* =========================
      WOMEN'S RANKINGS
      ========================= */
@@ -874,7 +926,6 @@ const poundForPound = {
     }
 
   ],
-
 
   women: [
 
@@ -1180,10 +1231,8 @@ function createFighter(
   const wrapper =
     document.createElement("div");
 
-
   const fighter =
     document.createElement("div");
-
 
   fighter.className =
     isChampion
@@ -1208,8 +1257,6 @@ function createFighter(
     "fighter-info";
 
 
-  /* STATUS */
-
   if (status) {
 
     const statusElement =
@@ -1226,8 +1273,6 @@ function createFighter(
     );
   }
 
-
-  /* NAME */
 
   const nameElement =
     document.createElement("div");
@@ -1271,17 +1316,13 @@ function createFighter(
     image.alt =
       name + " - JCF Champion";
 
-    image.onerror = function() {
-      this.style.display = "none";
-    };
-
     fighter.appendChild(
       image
     );
   }
 
 
-  /* MOVEMENT */
+  /* RANKING MOVEMENT */
 
   if (movement !== 0) {
 
@@ -1324,13 +1365,12 @@ function createFighter(
     fighter
   );
 
-
   return wrapper;
 }
 
 
 /* =========================================================
-   CREATE POUND-FOR-POUND FIGHTER
+   CREATE P4P FIGHTER
    ========================================================= */
 
 function createP4PFighter(
@@ -1338,10 +1378,10 @@ function createP4PFighter(
   fighterData
 ) {
 
-  const row =
+  const fighter =
     document.createElement("div");
 
-  row.className =
+  fighter.className =
     "p4p-fighter";
 
 
@@ -1356,7 +1396,7 @@ function createP4PFighter(
   rankElement.textContent =
     rank;
 
-  row.appendChild(
+  fighter.appendChild(
     rankElement
   );
 
@@ -1369,8 +1409,6 @@ function createP4PFighter(
   info.className =
     "p4p-info";
 
-
-  /* NAME */
 
   const name =
     document.createElement("div");
@@ -1386,26 +1424,19 @@ function createP4PFighter(
   );
 
 
-  /* RECORD */
+  const record =
+    document.createElement("div");
 
-  if (fighterData.record) {
+  record.className =
+    "p4p-record";
 
-    const record =
-      document.createElement("div");
+  record.textContent =
+    fighterData.record;
 
-    record.className =
-      "p4p-record";
+  info.appendChild(
+    record
+  );
 
-    record.textContent =
-      fighterData.record;
-
-    info.appendChild(
-      record
-    );
-  }
-
-
-  /* STATUS */
 
   if (fighterData.status) {
 
@@ -1424,7 +1455,7 @@ function createP4PFighter(
   }
 
 
-  row.appendChild(
+  fighter.appendChild(
     info
   );
 
@@ -1445,17 +1476,13 @@ function createP4PFighter(
     image.alt =
       fighterData.name;
 
-    image.onerror = function() {
-      this.style.display = "none";
-    };
-
-    row.appendChild(
+    fighter.appendChild(
       image
     );
   }
 
 
-  return row;
+  return fighter;
 }
 
 </script>
