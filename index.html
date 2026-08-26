@@ -937,6 +937,10 @@ const poundForPound = {
 };
 
 
+/* =========================================================
+   MAIN RANKINGS CONTAINER
+   ========================================================= */
+
 const rankingsContainer =
   document.getElementById("rankings");
 
@@ -1198,4 +1202,263 @@ function createFighter(
 
 
   const info =
-    document.createElement(
+    document.createElement("div");
+
+  info.className =
+    "fighter-info";
+
+
+  /* STATUS */
+
+  if (status) {
+
+    const statusElement =
+      document.createElement("div");
+
+    statusElement.className =
+      "status";
+
+    statusElement.textContent =
+      status;
+
+    info.appendChild(
+      statusElement
+    );
+  }
+
+
+  /* NAME */
+
+  const nameElement =
+    document.createElement("div");
+
+  nameElement.className =
+    "fighter-name";
+
+  nameElement.textContent =
+    name;
+
+  info.appendChild(
+    nameElement
+  );
+
+
+  fighter.appendChild(
+    rankElement
+  );
+
+  fighter.appendChild(
+    info
+  );
+
+
+  /* CHAMPION IMAGE */
+
+  if (
+    isChampion &&
+    imageURL
+  ) {
+
+    const image =
+      document.createElement("img");
+
+    image.className =
+      "fighter-image";
+
+    image.src =
+      imageURL;
+
+    image.alt =
+      name + " - JCF Champion";
+
+    image.onerror = function() {
+      this.style.display = "none";
+    };
+
+    fighter.appendChild(
+      image
+    );
+  }
+
+
+  /* MOVEMENT */
+
+  if (movement !== 0) {
+
+    const movementElement =
+      document.createElement("div");
+
+    movementElement.className =
+      movement > 0
+      ? "movement up"
+      : "movement down";
+
+    movementElement.textContent =
+      movement > 0
+      ? "▲ " + movement
+      : "▼ " + Math.abs(movement);
+
+    fighter.appendChild(
+      movementElement
+    );
+  }
+
+
+  /* RIGHT ARROW */
+
+  const arrow =
+    document.createElement("div");
+
+  arrow.className =
+    "arrow";
+
+  arrow.textContent =
+    "›";
+
+  fighter.appendChild(
+    arrow
+  );
+
+
+  wrapper.appendChild(
+    fighter
+  );
+
+
+  return wrapper;
+}
+
+
+/* =========================================================
+   CREATE POUND-FOR-POUND FIGHTER
+   ========================================================= */
+
+function createP4PFighter(
+  rank,
+  fighterData
+) {
+
+  const row =
+    document.createElement("div");
+
+  row.className =
+    "p4p-fighter";
+
+
+  /* RANK */
+
+  const rankElement =
+    document.createElement("div");
+
+  rankElement.className =
+    "p4p-rank";
+
+  rankElement.textContent =
+    rank;
+
+  row.appendChild(
+    rankElement
+  );
+
+
+  /* INFO */
+
+  const info =
+    document.createElement("div");
+
+  info.className =
+    "p4p-info";
+
+
+  /* NAME */
+
+  const name =
+    document.createElement("div");
+
+  name.className =
+    "p4p-name";
+
+  name.textContent =
+    fighterData.name;
+
+  info.appendChild(
+    name
+  );
+
+
+  /* RECORD */
+
+  if (fighterData.record) {
+
+    const record =
+      document.createElement("div");
+
+    record.className =
+      "p4p-record";
+
+    record.textContent =
+      fighterData.record;
+
+    info.appendChild(
+      record
+    );
+  }
+
+
+  /* STATUS */
+
+  if (fighterData.status) {
+
+    const status =
+      document.createElement("div");
+
+    status.className =
+      "p4p-status";
+
+    status.textContent =
+      fighterData.status;
+
+    info.appendChild(
+      status
+    );
+  }
+
+
+  row.appendChild(
+    info
+  );
+
+
+  /* P4P IMAGE */
+
+  if (fighterData.image) {
+
+    const image =
+      document.createElement("img");
+
+    image.className =
+      "p4p-image";
+
+    image.src =
+      fighterData.image;
+
+    image.alt =
+      fighterData.name;
+
+    image.onerror = function() {
+      this.style.display = "none";
+    };
+
+    row.appendChild(
+      image
+    );
+  }
+
+
+  return row;
+}
+
+</script>
+
+</body>
+</html>
