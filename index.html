@@ -1,1 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>JCF | Official MMA Fighter Rankings</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f4f4;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #d40000;
+    }
+
+    .hero {
+      background: white;
+      padding: 65px 6% 55px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .small-title {
+      color: #d40000;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 88px);
+      font-weight: 900;
+      letter-spacing: -5px;
+      line-height: .88;
+    }
+
+    .ranking {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 50px 6%;
+    }
+
+    .gender-title {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #d40000;
+      margin: 10px 0 35px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #111;
+    }
+
+    .division {
+      margin-bottom: 65px;
+    }
+
+    .division-title {
+      font-size: 26px;
+      font-weight: 900;
+      border-bottom: 4px solid #111;
+      padding-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .fighter {
+      background: white;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .fighter:hover {
+      background: #eeeeee;
+    }
+
+    .fighter.champion {
+      min-height: 165px;
+    }
+
+    .rank {
+      width: 85px;
+      min-width: 85px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: 900;
+      color: #999;
+    }
+
+    .champion .rank {
+      color: #111;
+      font-size: 27px;
+    }
+
+    .fighter-info {
+      flex: 1;
+      padding: 20px 10px;
+      z-index: 2;
+    }
+
+    .status {
+      color: #d40000;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    .fighter-name {
+      font-size: clamp(21px, 3.5vw, 38px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .fighter-image {
+      width: 155px;
+      height: 125px;
+      object-fit: contain;
+      align-self: flex-end;
+      margin-right: 35px;
+    }
+
+    .champion .fighter-image {
+      width: 190px;
+      height: 160px;
+    }
+
+    .movement {
+      width: 65px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 900;
+      margin-right: 5px;
+    }
+
+    .movement.up {
+      color: #8fcf00;
+    }
+
+    .movement.down {
+      color: #c40000;
+    }
+
+    .arrow {
+      width: 55px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    /* =========================
+       POUND FOR POUND
+       ========================= */
+
+    .p4p-section {
+      margin-top: 30px;
+      margin-bottom: 70px;
+    }
+
+    .p4p-title {
+      font-size: 32px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-bottom: 4px solid #111;
+      padding-bottom: 12px;
+      margin-bottom: 0;
+    }
+
+    .p4p-gender {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #d40000;
+      margin: 35px 0 0;
+      padding: 14px 0;
+      border-bottom: 3px solid #111;
+    }
+
+    .p4p-fighter {
+      background: white;
+      min-height: 105px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #ddd;
+      transition: .2s;
+    }
+
+    .p4p-fighter:hover {
+      background: #eeeeee;
+    }
+
+    .p4p-rank {
+      width: 85px;
+      min-width: 85px;
+      text-align: center;
+      font-size: 27px;
+      font-weight: 900;
+      color: #999;
+    }
+
+    .p4p-info {
+      flex: 1;
+      padding: 18px 10px;
+    }
+
+    .p4p-name {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+
+    .p4p-record {
+      font-size: 12px;
+      font-weight: 900;
+      color: #777;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .p4p-status {
+      color: #d40000;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    .p4p-image {
+      width: 120px;
+      height: 100px;
+      object-fit: contain;
+      align-self: flex-end;
+      margin-right: 35px;
+    }
+
+    /* =========================
+       DISCORD TAB
+       ========================= */
+
+    .discord-tab {
+      position: fixed;
+      left: 0;
+      bottom: 20px;
+      z-index: 9999;
+
+      background: #111;
+      color: white;
+      text-decoration: none;
+
+      padding: 13px 20px;
+      border-radius: 0 8px 8px 0;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .5px;
+
+      box-shadow: 0 4px 15px rgba(0,0,0,.25);
+      transition: .2s;
+    }
+
+    .discord-tab:hover {
+      background: #333;
+      padding-left: 24px;
+    }
+
+    footer {
+      background: #111;
+      color: #888;
+      text-align: center;
+      padding: 35px;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 700px) {
+
+      header {
+        height: 60px;
+        padding: 0 18px;
+      }
+
+      .logo {
+        font-size: 29px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 45px 20px 38px;
+      }
+
+      h1 {
+        font-size: 48px;
+        letter-spacing: -3px;
+      }
+
+      .ranking {
+        padding: 35px 12px;
+      }
+
+      .gender-title {
+        margin-bottom: 25px;
+      }
+
+      .division {
+        margin-bottom: 45px;
+      }
+
+      .division-title {
+        font-size: 20px;
+        padding-bottom: 10px;
+      }
+
+      .fighter {
+        min-height: 75px;
+      }
+
+      .fighter.champion {
+        min-height: 125px;
+      }
+
+      .rank {
+        width: 42px;
+        min-width: 42px;
+        font-size: 17px;
+      }
+
+      .champion .rank {
+        font-size: 20px;
+      }
+
+      .fighter-info {
+        padding: 12px 5px;
+      }
+
+      .status {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .fighter-name {
+        font-size: 19px;
+      }
+
+      .fighter-image {
+        width: 85px;
+        height: 90px;
+        margin-right: 0;
+      }
+
+      .champion .fighter-image {
+        width: 105px;
+        height: 110px;
+      }
+
+      .movement {
+        width: 45px;
+        font-size: 11px;
+      }
+
+      .arrow {
+        width: 32px;
+        font-size: 20px;
+      }
+
+      .p4p-section {
+        margin-top: 20px;
+      }
+
+      .p4p-title {
+        font-size: 25px;
+      }
+
+      .p4p-gender {
+        font-size: 13px;
+      }
+
+      .p4p-fighter {
+        min-height: 82px;
+      }
+
+      .p4p-rank {
+        width: 42px;
+        min-width: 42px;
+        font-size: 18px;
+      }
+
+      .p4p-info {
+        padding: 12px 5px;
+      }
+
+      .p4p-name {
+        font-size: 18px;
+      }
+
+      .p4p-record {
+        font-size: 9px;
+      }
+
+      .p4p-status {
+        font-size: 8px;
+      }
+
+      .p4p-image {
+        width: 80px;
+        height: 75px;
+        margin-right: 0;
+      }
+
+      .discord-tab {
+        bottom: 15px;
+        padding: 11px 15px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     DISCORD TAB
+     ========================= -->
+
+<a
+  href="https://discord.gg/GvhcReah9c"
+  class="discord-tab"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  💬 JOIN OUR DISCORD
+</a>
+
+
+<header>
+
+  <div class="logo">JCF</div>
+
+  <nav>
+    <a href="#">HOME</a>
+    <a href="#">EVENTS</a>
+    <a href="#">RANKINGS</a>
+    <a href="#">ATHLETES</a>
+    <a href="#">NEWS</a>
+    <a href="#">JCF HALL OF FAME</a>
+  </nav>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="small-title">
+    OFFICIAL RANKINGS
+  </div>
+
+  <h1>
+    JCF MMA<br>
+    RANKINGS
+  </h1>
+
+</section>
+
+
+<main class="ranking" id="rankings"></main>
+
+
+<footer>
+  © 2026 JCF — MMA Fighter Rankings
+</footer>
+
+
+<script>
+
+/* =========================================================
+   DIVISIONAL RANKINGS
+   ========================================================= */
+
+const divisions = [
+
+  {
+    name: "HEAVYWEIGHT",
+    gender: "MEN",
+    champion: "Josh Hokit",
+    image: "images/josh-hok.png",
+    fighters: [
+      "Niko Verhoeven",
+      "Ciryil Gane",
+      "King Diaz",
+      "Crash Bandicoot",
+      "Waldo Cortes Acosta",
+      "Ronnie Lewis",
+      "Tallison Teixeira",
+      "Derrick Lewis",
+      "Alex Perieray",
+      "Silvia Dodoo",
+      "Brock Lesnar",
+      "Nickolas Tyson",
+      "Robel Despaigne",
+      "Drape Coo",
+      "Stevey Stal"
+    ]
+  },
+
+  {
+    name: "LIGHT HEAVYWEIGHT",
+    gender: "MEN",
+    champion: null,
+    fighters: [
+      "Josh Hokit",
+      "Santos Álvarez",
+      "FYODQR EMELIANENKO",
+      "Isreal Sinaya",
+      "Movsar Ankalaev",
+      "Tee Flocka",
+      "Eclipse Holland",
+      "Isreal Adesyanya",
+      "Raining B",
+      "Randi Couture",
+      "Rich Prochy",
+      "Uffwytz",
+      "Leony Smith",
+      "David Coret",
+      "Kanye"
+    ]
+  },
+
+  {
+    name: "MIDDLEWEIGHT",
+    gender: "MEN",
+    champion: "Eri Haney",
+    image: "images/eri-haney.png",
+    fighters: [
+      "Gervonta Davis",
+      "Devin Haney",
+      "Biel Colosso",
+      "Micheal Page",
+      "Anderson Silva",
+      "Ronnie Lewis",
+      "Tysen Fury",
+      "Randi Couture",
+      "Andrew Tate",
+      "Tee Flocka",
+      "Denzel Harrington",
+      "Will Sr",
+      "Raining",
+      "Eclipse Holland",
+      "Stephen Thompson"
+    ]
+  },
+
+  {
+    name: "WELTERWEIGHT",
+    gender: "MEN",
+    champion: "LEMONY PAUL",
+    image: "images/lemon-paul.png",
+    fighters: [
+      "CRONOR MACGERVOR",
+      "MOVSAR ANKALAEV",
+      "TAGGZ Chandler",
+      "Andrew Tate",
+      "Silvia Dodoo",
+      "Rich Prochy",
+      "Randi Couture",
+      "Leuk Udu",
+      "Stephen Thompson",
+      "Jordan Davis",
+      "Leuk Udu jr",
+      "Leony Smith",
+      "Robel Despaigne",
+      "Shane Douglass",
+      "Drape Coo"
+    ]
+  },
+
+  {
+    name: "LIGHTWEIGHT",
+    gender: "MEN",
+    champion: "Cinnamon Jitmuangnon",
+    image: "images/cinnamon-jum.png",
+    fighters: [
+      "FYODQR EMELIANENKO",
+      "Usain Coan",
+      "Taggz Chandler",
+      "Brady Ashford",
+      "Gervonta Davis",
+
+      {
+        name: "Jordan Davis",
+        movement: 1
+      },
+
+      {
+        name: "Iwo Baraniewski",
+        movement: 1
+      },
+
+      {
+        name: "Uffwytz",
+        movement: 1
+      },
+
+      {
+        name: "Will Sr",
+        movement: 1
+      },
+
+      {
+        name: "Lion Davis",
+        movement: -4
+      },
+
+      "Car Kid",
+      "Biel Colosso",
+      "Tysen Fury",
+      "Shane Douglass",
+      "Isreal Sinaya"
+    ]
+  },
+
+  {
+    name: "FEATHERWEIGHT",
+    gender: "MEN",
+    champion: "Usman Nurmagomedov",
+    image: "images/usman-nurmagomedov.png",
+    fighters: [
+      "Sporkak",
+      "Sean O Malley",
+      "Shane Douglass",
+      "Manny Hernandez",
+      "Manuel Torres",
+      "Sean Strickland",
+      "Anderson Silva",
+      "Mike Perry",
+      "Leuk Udu",
+      "Salem Rahim",
+      "Raining",
+      "Lion Davis",
+      "Floyd Money",
+      "Stevey Stal",
+      "Leony Smith"
+    ]
+  },
+
+  {
+    name: "BANTAMWEIGHT",
+    gender: "MEN",
+    champion: "Kay Davis",
+    image: "images/kay-davis.png",
+    fighters: [
+      "DAFFYD BENDAVIDEZ",
+      "Cinnamon JITMUANGNON",
+      "Sean O Malley",
+      "Sean Strickland",
+      "Manuel Torres",
+      "Manny Hernandez",
+      "Tysen Fury",
+      "CarKid",
+      "Alexander Volkanovski",
+      "Micheal Page",
+      "Isreal Adesyanya",
+      "Ronnie Lewis",
+      "Tee Flocka",
+      "Eclipse Holland",
+      "Rich Prochy"
+    ]
+  },
+
+  {
+    name: "FLYWEIGHT",
+    gender: "MEN",
+    champion: "Anderson Silva",
+    image: "images/anderson-silva.png",
+    fighters: [
+      "Sean Strickland",
+      "Iwo Baraniewski",
+      "Israel Adesyanya",
+      "Lion Davis",
+      "Sporkak",
+      "Ronny Lawler",
+      "Rodtang Usman",
+      "Sean O Malley",
+      "Israel Sinaya",
+      "Salem Rahim",
+      "Leuk Udu",
+      "Leuk Udu jr",
+      "Floyd Money",
+      "Stevey Stal",
+
+      {
+        name: "Lopes Topuria",
+        movement: -2
+      }
+    ]
+  },
+
+  /* =========================
+     WOMEN'S RANKINGS
+     ========================= */
+
+  {
+    name: "WOMEN'S STRAWWEIGHT",
+    gender: "WOMEN",
+    champion: "Melissa Bellamy",
+    image: "images/Melissa-bellamy.png",
+    fighters: [
+      "Ronda Rousey",
+      "Slay Taylor",
+      "Youst Tousty",
+      "Heshy Serrano",
+      "Enzzi Bridge",
+      "Queen Rose",
+      "Veony Perez",
+      "Amanda Ross",
+      "Selen Shields",
+      "Katie Shields",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD"
+    ]
+  },
+
+  {
+    name: "WOMEN'S FLYWEIGHT",
+    gender: "WOMEN",
+    champion: "Yousty Tousty",
+    image: "images/yousty-tousty.png",
+    fighters: [
+      "Heshy Serrano",
+      "Enzzi Bridge",
+      "Melissa Bellamy",
+      "Katie Shields",
+      "Slay Taylor",
+      "Queen Rose",
+      "Amanda Smith",
+      "Kat Baumna",
+      "Selen Shields",
+      "Mosa Noust",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD"
+    ]
+  }
+
+];
+
+
+/* =========================================================
+   POUND-FOR-POUND RANKINGS
+   ========================================================= */
+
+const poundForPound = {
+
+  men: [
+
+    {
+      name: "KAY DAVIS",
+      record: "9-0-0 (8 KOS)",
+      status: "JCF BANTAMWEIGHT CHAMPION",
+      image: "images/kay-davis.png"
+    },
+
+    {
+      name: "CINNAMON JITMUANGNON",
+      record: "9-0-0 (6 KOS)",
+      status: "JCF LIGHTWEIGHT CHAMPION"
+    },
+
+    {
+      name: "JOSH HOKIT",
+      record: "13-0-0 (9 KOS)",
+      status: "JCF HEAVYWEIGHT CHAMPION"
+    },
+
+    {
+      name: "USMAN NURMAGOMEDOV",
+      record: "7-0-0 (6 KOS)",
+      status: "JCF FEATHERWEIGHT CHAMPION"
+    },
+
+    {
+      name: "ERI HANEY",
+      record: "23-2-1 (12 KOS)",
+      status: "JCF MIDDLEWEIGHT CHAMPION"
+    },
+
+    {
+      name: "LEMONY PAUL",
+      record: "14-3-1 (6 KOS)",
+      status: "JCF WELTERWEIGHT CHAMPION"
+    },
+
+    {
+      name: "ANDERSON SILVA",
+      record: "9-2-2 (5 KOS)",
+      status: "JCF FLYWEIGHT CHAMPION"
+    },
+
+    {
+      name: "NIKO VERHOEVEN",
+      record: "10-0-0 (8 KOS)"
+    },
+
+    {
+      name: "CRONOR MACGERVOR",
+      record: "6-0-0 (5 KOS)"
+    },
+
+    {
+      name: "DAFFYD BENDAVIDEZ",
+      record: "10-1-2 (4 KOS)"
+    },
+
+    {
+      name: "USAIN COAN",
+      record: "9-2-1 (1 KOS)",
+      status: "BMF LIGHTWEIGHT CHAMPION"
+    },
+
+    {
+      name: "BRADY ASHFORD",
+      record: "8-1-0 (8 KOS)"
+    },
+
+    {
+      name: "TAGGZ CHANDLER",
+      record: "6-0-0 (6 KOS)"
+    },
+
+    {
+      name: "GERVONTA DAVIS",
+      record: "17-5-0 (9 KOS)"
+    },
+
+    {
+      name: "FYQDOR EMEILANENKO",
+      record: "9-1-0 (3 KOS)"
+    },
+
+    {
+      name: "TYSEN FURY",
+      record: "9-1-0 (6 KOS)"
+    },
+
+    {
+      name: "SHANE DOUGLASS",
+      record: "15-4-0 (13 KOS)"
+    },
+
+    {
+      name: "MOVSAR ANKALAEV",
+      record: "16-5-0 (7 KOS)"
+    },
+
+    {
+      name: "WALDO CORTES ACOSTA",
+      record: "5-0-0 (2 KOS)"
+    },
+
+    {
+      name: "CRASH BANDICOOT",
+      record: "20-3-2 (20 KOS)"
+    }
+
+  ],
+
+  women: [
+
+    {
+      name: "MELISSA BELLAMY",
+      record: "27-0-0 (20 KOS)",
+      status: "JCF WOMEN'S STRAWWEIGHT CHAMPION",
+      image: "images/Melissa-bellamy.png"
+    },
+
+    {
+      name: "SLAY TAYLOR",
+      record: "14-3-0 (5 KOS)",
+      status: "BMF WOMEN'S STRAWWEIGHT CHAMPION"
+    },
+
+    {
+      name: "YOUSTY TOUSTY",
+      record: "8-2-0 (3 KOS)",
+      status: "JCF WOMEN'S FLYWEIGHT CHAMPION"
+    },
+
+    {
+      name: "QUEEN ROSE",
+      record: "4-0-0 (2 KOS)"
+    },
+
+    {
+      name: "KATIE SHIELDS",
+      record: "7-1-0 (1 KOS)"
+    },
+
+    {
+      name: "VEONY PEREZ",
+      record: "6-1-2 (2 KOS)"
+    },
+
+    {
+      name: "AMANDA ROSS",
+      record: "7-2-0 (2 KOS)"
+    },
+
+    {
+      name: "RONDA ROUSEY",
+      record: "6-1-0 (0 KOS)"
+    },
+
+    {
+      name: "SELEN SHIELDS",
+      record: "7-2-1 (1 KOS)"
+    },
+
+    {
+      name: "MOSA NOUST",
+      record: "3-0-0 (2 KOS)"
+    }
+
+  ]
+
+};
+
+
+/* =========================================================
+   MAIN RANKINGS CONTAINER
+   ========================================================= */
+
+const rankingsContainer =
+  document.getElementById("rankings");
+
+let currentGender = "";
+
+
+/* =========================================================
+   CREATE DIVISIONAL RANKINGS
+   ========================================================= */
+
+divisions.forEach((division) => {
+
+  if (division.gender !== currentGender) {
+
+    currentGender = division.gender;
+
+    const genderTitle =
+      document.createElement("div");
+
+    genderTitle.className =
+      "gender-title";
+
+    genderTitle.textContent =
+      division.gender === "MEN"
+        ? "MEN'S RANKINGS"
+        : "WOMEN'S RANKINGS";
+
+    rankingsContainer.appendChild(
+      genderTitle
+    );
+  }
+
+
+  const divisionSection =
+    document.createElement("section");
+
+  divisionSection.className =
+    "division";
+
+
+  const divisionTitle =
+    document.createElement("div");
+
+  divisionTitle.className =
+    "division-title";
+
+  divisionTitle.textContent =
+    division.name;
+
+  divisionSection.appendChild(
+    divisionTitle
+  );
+
+
+  /* =========================
+     CHAMPION
+     ========================= */
+
+  if (division.champion) {
+
+    const champion =
+      createFighter(
+        "C",
+        division.champion,
+        "JCF CHAMPION",
+        true,
+        division.image
+      );
+
+    divisionSection.appendChild(
+      champion
+    );
+
+  } else {
+
+    const vacant =
+      createFighter(
+        "C",
+        "VACANT",
+        "JCF CHAMPIONSHIP",
+        true,
+        null
+      );
+
+    divisionSection.appendChild(
+      vacant
+    );
+  }
+
+
+  /* =========================
+     #1 - #15
+     ========================= */
+
+  division.fighters.forEach(
+    (fighterData, index) => {
+
+      const rank =
+        index + 1;
+
+      const name =
+        typeof fighterData === "string"
+          ? fighterData
+          : fighterData.name;
+
+      const movement =
+        typeof fighterData === "string"
+          ? 0
+          : fighterData.movement || 0;
+
+      const fighter =
+        createFighter(
+          rank,
+          name,
+          "",
+          false,
+          null,
+          movement
+        );
+
+      divisionSection.appendChild(
+        fighter
+      );
+    }
+  );
+
+
+  rankingsContainer.appendChild(
+    divisionSection
+  );
+
+});
+
+
+/* =========================================================
+   POUND-FOR-POUND SECTION
+   ========================================================= */
+
+const p4pSection =
+  document.createElement("section");
+
+p4pSection.className =
+  "p4p-section";
+
+
+const p4pTitle =
+  document.createElement("div");
+
+p4pTitle.className =
+  "p4p-title";
+
+p4pTitle.textContent =
+  "POUND-FOR-POUND RANKINGS";
+
+p4pSection.appendChild(
+  p4pTitle
+);
+
+
+/* =========================
+   MEN'S P4P
+   ========================= */
+
+const menTitle =
+  document.createElement("
