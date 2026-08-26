@@ -890,4 +890,52 @@ function createP4PFighter(rank, fighterData) {
   const fighter = document.createElement("div");
   fighter.className = "p4p-fighter";
 
-  const rankElement = document.cre
+  // Rank
+  const rankElement = document.createElement("div");
+  rankElement.className = "p4p-rank";
+  rankElement.textContent = rank;
+  fighter.appendChild(rankElement);
+
+  // Info Container
+  const infoElement = document.createElement("div");
+  infoElement.className = "p4p-info";
+
+  // Name
+  const nameElement = document.createElement("div");
+  nameElement.className = "p4p-name";
+  nameElement.textContent = fighterData.name;
+  infoElement.appendChild(nameElement);
+
+  // Record (Optional)
+  if (fighterData.record) {
+    const recordElement = document.createElement("div");
+    recordElement.className = "p4p-record";
+    recordElement.textContent = fighterData.record;
+    infoElement.appendChild(recordElement);
+  }
+
+  // Status/Belt (Optional)
+  if (fighterData.status) {
+    const statusElement = document.createElement("div");
+    statusElement.className = "p4p-status";
+    statusElement.textContent = fighterData.status;
+    infoElement.appendChild(statusElement);
+  }
+
+  fighter.appendChild(infoElement);
+
+  // Image (Optional)
+  if (fighterData.image) {
+    const imgElement = document.createElement("img");
+    imgElement.className = "p4p-image";
+    imgElement.src = fighterData.image;
+    imgElement.alt = fighterData.name;
+    fighter.appendChild(imgElement);
+  }
+
+  return fighter;
+}
+</script>
+
+</body>
+</html>
