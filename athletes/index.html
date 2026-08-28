@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JCF | Athletes</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      width: 100%;
+      background: #080808;
+      border-bottom: 1px solid #252525;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      max-width: 1450px;
+      min-height: 78px;
+      margin: 0 auto;
+      padding: 0 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 29px;
+      font-weight: 1000;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #e10600;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #999;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+    }
+
+    nav a.active {
+      position: relative;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -11px;
+      height: 2px;
+      background: #e10600;
+    }
+
+    /* =========================
+       PAGE HERO
+    ========================= */
+
+    .page-hero {
+      position: relative;
+      min-height: 390px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(225, 6, 0, .16),
+          transparent 42%
+        ),
+        linear-gradient(
+          135deg,
+          #151515,
+          #080808 55%,
+          #030303
+        );
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .page-hero::before {
+      content: "JCF";
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      font-size: clamp(230px, 43vw, 620px);
+
+      line-height: .8;
+
+      font-weight: 1000;
+
+      letter-spacing: -35px;
+
+      color: rgba(255,255,255,.035);
+
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 70px 20px;
+    }
+
+    .page-kicker {
+      color: #e10600;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 18px;
+
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(60px, 11vw, 125px);
+
+      line-height: .82;
+
+      font-weight: 1000;
+
+      letter-spacing: -6px;
+
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      margin-top: 23px;
+
+      color: #888;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1250px;
+
+      margin: 0 auto;
+
+      padding: 65px 25px 100px;
+    }
+
+    .section-heading {
+      display: flex;
+
+      align-items: flex-end;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding-bottom: 17px;
+
+      margin-bottom: 30px;
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+
+      font-weight: 1000;
+
+      letter-spacing: -1px;
+
+      text-transform: uppercase;
+    }
+
+    .section-heading span {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       ATHLETE LIST
+    ========================= */
+
+    .athlete-list {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+    }
+
+    /* =========================
+       ATHLETE CARD
+    ========================= */
+
+    .athlete-card {
+      position: relative;
+
+      min-height: 370px;
+
+      overflow: hidden;
+
+      padding: 38px 42px 35px;
+
+      background:
+        radial-gradient(
+          circle at 90% 25%,
+          rgba(225, 6, 0, .10),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #171717,
+          #0b0b0b
+        );
+
+      border: 1px solid #292929;
+
+      transition: .2s ease;
+    }
+
+    .athlete-card:hover {
+      border-color: #4b4b4b;
+    }
+
+    .athlete-card::before {
+      content: "JCF";
+
+      position: absolute;
+
+      right: -25px;
+
+      top: -55px;
+
+      font-size: 210px;
+
+      line-height: 1;
+
+      font-weight: 1000;
+
+      letter-spacing: -15px;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .athlete-card::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 4px;
+
+      background: #e10600;
+    }
+
+    /* =========================
+       ATHLETE TOP
+    ========================= */
+
+    .athlete-top {
+      position: relative;
+
+      z-index: 2;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .athlete-tags {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+
+      background: #292929;
+
+      color: #eeeeee;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: .5px;
+
+      text-transform: uppercase;
+
+      border: 1px solid #353535;
+    }
+
+    .tag.active {
+      background: #e10600;
+
+      border-color: #e10600;
+
+      color: #ffffff;
+    }
+
+    /* =========================
+       NAME
+    ========================= */
+
+    .athlete-name {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 38px;
+
+      font-size: clamp(38px, 6vw, 72px);
+
+      line-height: .9;
+
+      font-weight: 1000;
+
+      letter-spacing: -3px;
+
+      text-transform: uppercase;
+    }
+
+    .athlete-division {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 15px;
+
+      color: #bcbcbc;
+
+      font-size: 14px;
+
+      font-weight: 900;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+    .athlete-record {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 8px;
+
+      color: #ffffff;
+
+      font-size: 15px;
+
+      font-weight: 900;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+    .athlete-record span {
+      color: #e10600;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      position: relative;
+
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+      margin-top: 42px;
+
+      border-top: 1px solid #292929;
+    }
+
+    .stat {
+      min-height: 105px;
+
+      padding: 20px 12px 5px;
+
+      text-align: center;
+
+      border-right: 1px solid #292929;
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-size: clamp(29px, 4vw, 46px);
+
+      line-height: .9;
+
+      font-weight: 1000;
+    }
+
+    .stat-line {
+      width: 52px;
+
+      height: 3px;
+
+      margin: 14px auto 11px;
+
+      background: #e10600;
+    }
+
+    .stat-label {
+      color: #ffffff;
+
+      font-size: 10px;
+
+      line-height: 1.25;
+
+      font-weight: 1000;
+
+      letter-spacing: .8px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #080808;
+
+      border-top: 1px solid #222;
+
+      padding: 45px 20px;
+
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 27px;
+
+      font-weight: 1000;
+
+      margin-bottom: 9px;
+    }
+
+    .footer-logo span {
+      color: #e10600;
+    }
+
+    footer p {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .header-inner {
+        flex-direction: column;
+
+        padding: 17px 20px;
+      }
+
+      nav {
+        justify-content: center;
+
+        gap: 15px;
+      }
+
+      .athlete-card {
+        padding: 32px 28px;
+      }
+
+      .athlete-name {
+        font-size: 55px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      .page-hero {
+        min-height: 330px;
+      }
+
+      .page-hero h1 {
+        font-size: 58px;
+
+        letter-spacing: -4px;
+      }
+
+      main {
+        padding: 50px 14px 75px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+      }
+
+      .athlete-card {
+        min-height: auto;
+
+        padding: 27px 20px 25px;
+      }
+
+      .athlete-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .athlete-name {
+        margin-top: 28px;
+
+        font-size: 40px;
+
+        letter-spacing: -2px;
+      }
+
+      .athlete-division {
+        font-size: 11px;
+      }
+
+      .athlete-record {
+        font-size: 12px;
+      }
+
+      .stats {
+        margin-top: 30px;
+      }
+
+      .stat {
+        min-height: 85px;
+
+        padding: 15px 4px 3px;
+      }
+
+      .stat-number {
+        font-size: 25px;
+      }
+
+      .stat-line {
+        width: 30px;
+
+        height: 2px;
+
+        margin: 9px auto 7px;
+      }
+
+      .stat-label {
+        font-size: 7px;
+
+        letter-spacing: .3px;
+      }
+    }
+
+    /* =========================
+       VERY SMALL PHONES
+    ========================= */
+
+    @media (max-width: 400px) {
+
+      .logo {
+        font-size: 25px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .athlete-name {
+        font-size: 34px;
+      }
+
+      .tag {
+        padding: 8px 10px;
+
+        font-size: 9px;
+      }
+
+      .stat {
+        padding-left: 2px;
+        padding-right: 2px;
+      }
+
+      .stat-number {
+        font-size: 22px;
+      }
+
+      .stat-label {
+        font-size: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <a href="/home/" class="logo">
+        <span>JCF</span> MMA
+      </a>
+
+      <nav>
+
+        <a href="/home/">
+          HOME
+        </a>
+
+        <a href="/events/">
+          EVENTS
+        </a>
+
+        <a href="/rankings/">
+          RANKINGS
+        </a>
+
+        <a href="/athletes/" class="active">
+          ATHLETES
+        </a>
+
+        <a href="/news/">
+          NEWS
+        </a>
+
+        <a href="/hall-of-fame/">
+          JCF HALL OF FAME
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       PAGE HERO
+  ========================= -->
+
+  <section class="page-hero">
+
+    <div class="page-hero-content">
+
+      <div class="page-kicker">
+        JCF MMA
+      </div>
+
+      <h1>
+        ATHLETES
+      </h1>
+
+      <div class="page-subtitle">
+        THE FIGHTERS OF JCF
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+
+    <div class="section-heading">
+
+      <h2>
+        JCF FIGHTERS
+      </h2>
+
+      <span>
+        OFFICIAL ATHLETE DIRECTORY
+      </span>
+
+    </div>
+
+
+    <div class="athlete-list">
+
+
+      <!-- =========================
+           CINNAMON JITMUANGNON
+      ========================= -->
+
+      <article class="athlete-card">
+
+        <div class="athlete-top">
+
+          <div class="athlete-tags">
+
+            <div class="tag">
+              Lightweight Division
+            </div>
+
+            <div class="tag active">
+              Active
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <h2 class="athlete-name">
+          CINNAMON JITMUANGNON
+        </h2>
+
+
+        <div class="athlete-division">
+          Lightweight Division
+        </div>
+
+
+        <div class="athlete-record">
+          9-0-0 <span>[W-L-D]</span>
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">9</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">WINS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">LOSS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">KOS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">DRAWS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">NO CONTEST</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           KAY DAVIS
+      ========================= -->
+
+      <article class="athlete-card">
+
+        <div class="athlete-top">
+
+          <div class="athlete-tags">
+
+            <div class="tag">
+              Bantamweight Division
+            </div>
+
+            <div class="tag active">
+              Active
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <h2 class="athlete-name">
+          KAY DAVIS
+        </h2>
+
+
+        <div class="athlete-division">
+          Bantamweight Division
+        </div>
+
+
+        <div class="athlete-record">
+          9-0-0 <span>[W-L-D]</span>
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">9</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">WINS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">LOSS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">8</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">KOS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">DRAWS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">NO CONTEST</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           USMAN NURMAGOMEDOV
+      ========================= -->
+
+      <article class="athlete-card">
+
+        <div class="athlete-top">
+
+          <div class="athlete-tags">
+
+            <div class="tag">
+              Featherweight Division
+            </div>
+
+            <div class="tag active">
+              Active
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <h2 class="athlete-name">
+          USMAN NURMAGOMEDOV
+        </h2>
+
+
+        <div class="athlete-division">
+          Featherweight Division
+        </div>
+
+
+        <div class="athlete-record">
+          7-0-0 <span>[W-L-D]</span>
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">7</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">WINS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">LOSS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">KOS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">DRAWS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">NO CONTEST</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           CRONOR MACGERVOR
+      ========================= -->
+
+      <article class="athlete-card">
+
+        <div class="athlete-top">
+
+          <div class="athlete-tags">
+
+            <div class="tag">
+              JCF Athlete
+            </div>
+
+            <div class="tag active">
+              Active
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <h2 class="athlete-name">
+          CRONOR MACGERVOR
+        </h2>
+
+
+        <div class="athlete-division">
+          JCF Athlete
+        </div>
+
+
+        <div class="athlete-record">
+          7-0-0 <span>[W-L-D]</span>
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">7</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">WINS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">LOSS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">KOS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">DRAWS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">NO CONTEST</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           TERI HANEY
+      ========================= -->
+
+      <article class="athlete-card">
+
+        <div class="athlete-top">
+
+          <div class="athlete-tags">
+
+            <div class="tag">
+              Women's Strawweight Division
+            </div>
+
+            <div class="tag active">
+              Active
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <h2 class="athlete-name">
+          TERI HANEY
+        </h2>
+
+
+        <div class="athlete-division">
+          Women's Strawweight Division
+        </div>
+
+
+        <div class="athlete-record">
+          20-0-0 <span>[W-L-D]</span>
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">20</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">WINS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">LOSS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">9</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">KOS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-line"></div>
+            <div class="stat-label">DRAWS</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-line"></div>
+            <div class="stat-lab
