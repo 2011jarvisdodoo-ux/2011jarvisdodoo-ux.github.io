@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JCF | Events</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      width: 100%;
+      background: #080808;
+      border-bottom: 1px solid #252525;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      max-width: 1450px;
+      min-height: 78px;
+      margin: 0 auto;
+      padding: 0 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 29px;
+      font-weight: 1000;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #e10600;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #999;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #fff;
+    }
+
+    nav a.active {
+      position: relative;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -11px;
+      height: 2px;
+      background: #e10600;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .page-hero {
+      position: relative;
+      min-height: 390px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(225, 6, 0, .16),
+          transparent 42%
+        ),
+        linear-gradient(
+          135deg,
+          #151515,
+          #080808 55%,
+          #030303
+        );
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .page-hero::before {
+      content: "JCF";
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      font-size: clamp(230px, 43vw, 620px);
+
+      line-height: .8;
+
+      font-weight: 1000;
+
+      letter-spacing: -35px;
+
+      color: rgba(255,255,255,.035);
+
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 70px 20px;
+    }
+
+    .page-kicker {
+      color: #e10600;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 18px;
+
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(65px, 12vw, 140px);
+
+      line-height: .82;
+
+      font-weight: 1000;
+
+      letter-spacing: -6px;
+
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      margin-top: 23px;
+
+      color: #888;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 65px 25px 100px;
+    }
+
+    .section-heading {
+      display: flex;
+
+      align-items: flex-end;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding-bottom: 17px;
+
+      margin-bottom: 30px;
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+
+      font-weight: 1000;
+
+      letter-spacing: -1px;
+
+      text-transform: uppercase;
+    }
+
+    .section-heading span {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       EVENTS
+    ========================= */
+
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .event-card {
+      position: relative;
+
+      min-height: 230px;
+
+      padding: 40px 42px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 92% 50%,
+          rgba(225, 6, 0, .12),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          #171717,
+          #090909
+        );
+
+      border: 1px solid #292929;
+
+      transition: .2s ease;
+    }
+
+    .event-card:hover {
+      border-color: #4b4b4b;
+      transform: translateY(-3px);
+    }
+
+    .event-card::before {
+      content: "JCF";
+
+      position: absolute;
+
+      right: -25px;
+      top: -55px;
+
+      font-size: 200px;
+
+      line-height: 1;
+
+      font-weight: 1000;
+
+      letter-spacing: -15px;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .event-card::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 4px;
+
+      background: #e10600;
+    }
+
+    .event-number {
+      position: relative;
+      z-index: 2;
+
+      color: #e10600;
+
+      font-size: 10px;
+
+      font-weight: 1000;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 14px;
+    }
+
+    .event-title {
+      position: relative;
+      z-index: 2;
+
+      font-size: clamp(28px, 4.5vw, 52px);
+
+      line-height: .95;
+
+      font-weight: 1000;
+
+      letter-spacing: -2px;
+
+      text-transform: uppercase;
+    }
+
+    .event-title span {
+      color: #e10600;
+    }
+
+    .event-status {
+      position: relative;
+      z-index: 2;
+
+      margin-top: 18px;
+
+      color: #777;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       TBA CARD
+    ========================= */
+
+    .event-card.tba {
+      background:
+        linear-gradient(
+          135deg,
+          #111,
+          #070707
+        );
+    }
+
+    .event-card.tba .event-title {
+      color: #aaa;
+    }
+
+    .event-card.tba .event-status {
+      color: #e10600;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #080808;
+
+      border-top: 1px solid #222;
+
+      padding: 45px 20px;
+
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 27px;
+
+      font-weight: 1000;
+
+      margin-bottom: 9px;
+    }
+
+    .footer-logo span {
+      color: #e10600;
+    }
+
+    footer p {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .header-inner {
+        flex-direction: column;
+        padding: 17px 20px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .event-card {
+        padding: 32px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      .page-hero {
+        min-height: 330px;
+      }
+
+      .page-hero h1 {
+        font-size: 60px;
+        letter-spacing: -4px;
+      }
+
+      main {
+        padding: 50px 14px 75px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .event-card {
+        min-height: 205px;
+        padding: 28px 20px;
+      }
+
+      .event-title {
+        font-size: 30px;
+        letter-spacing: -1px;
+      }
+    }
+
+    /* =========================
+       SMALL PHONES
+    ========================= */
+
+    @media (max-width: 400px) {
+
+      .logo {
+        font-size: 25px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .page-hero h1 {
+        font-size: 53px;
+      }
+
+      .event-title {
+        font-size: 25px;
+      }
+
+      .event-card {
+        padding: 24px 17px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <a href="/home/" class="logo">
+        <span>JCF</span> MMA
+      </a>
+
+      <nav>
+
+        <a href="/home/">
+          HOME
+        </a>
+
+        <a href="/events/" class="active">
+          EVENTS
+        </a>
+
+        <a href="/rankings/">
+          RANKINGS
+        </a>
+
+        <a href="/athletes/">
+          ATHLETES
+        </a>
+
+        <a href="/news/">
+          NEWS
+        </a>
+
+        <a href="/hall-of-fame/">
+          JCF HALL OF FAME
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="page-hero">
+
+    <div class="page-hero-content">
+
+      <div class="page-kicker">
+        JCF MMA
+      </div>
+
+      <h1>
+        EVENTS
+      </h1>
+
+      <div class="page-subtitle">
+        UPCOMING JCF EVENTS
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+    <div class="section-heading">
+
+      <h2>
+        JCF EVENTS
+      </h2>
+
+      <span>
+        OFFICIAL EVENT SCHEDULE
+      </span>
+
+    </div>
+
+
+    <div class="events-list">
+
+
+      <!-- =========================
+           JCF 032
+      ========================= -->
+
+      <article class="event-card">
+
+        <div class="event-number">
+          JCF 032
+        </div>
+
+        <h2 class="event-title">
+          JCF 032:
+          <span>CINNAMON VS USAIN</span>
+        </h2>
+
+        <div class="event-status">
+          UPCOMING EVENT
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           FIGHT NIGHT 010
+      ========================= -->
+
+      <article class="event-card">
+
+        <div class="event-number">
+          JCF FIGHT NIGHT 010
+        </div>
+
+        <h2 class="event-title">
+          JCF FIGHT NIGHT 010:
+          <span>LOPES VS MANNY</span>
+        </h2>
+
+        <div class="event-status">
+          UPCOMING EVENT
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           FIGHT NIGHT 011
+      ========================= -->
+
+      <article class="event-card">
+
+        <div class="event-number">
+          JCF FIGHT NIGHT 011
+        </div>
+
+        <h2 class="event-title">
+          JCF FIGHT NIGHT 011:
+          <span>FURY VS DAVIS</span>
+        </h2>
+
+        <div class="event-status">
+          UPCOMING EVENT
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           JCF 033
+      ========================= -->
+
+      <article class="event-card tba">
+
+        <div class="event-number">
+          JCF 033
+        </div>
+
+        <h2 class="event-title">
+          JCF 033:
+          TO BE ANNOUNCED SOON
+        </h2>
+
+        <div class="event-status">
+          EVENT DETAILS COMING SOON
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-logo">
+      <span>JCF</span> MMA
+    </div>
+
+    <p>
+      THE FUTURE OF MMA
+    </p>
+
+  </footer>
+
+
+</body>
+</html>
