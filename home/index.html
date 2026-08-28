@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JCF | Official MMA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      width: 100%;
+      background: #080808;
+      border-bottom: 1px solid #242424;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      max-width: 1450px;
+      min-height: 78px;
+      margin: 0 auto;
+      padding: 0 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 31px;
+      font-weight: 1000;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #e10600;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .7px;
+      transition: .2s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #fff;
+    }
+
+    nav a.active {
+      position: relative;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 2px;
+      background: #e10600;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 650px;
+      position: relative;
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(225, 6, 0, .18),
+          transparent 40%
+        ),
+        linear-gradient(
+          135deg,
+          #161616 0%,
+          #090909 48%,
+          #030303 100%
+        );
+
+      border-bottom: 1px solid #242424;
+    }
+
+    /* HUGE JCF BACKGROUND */
+
+    .hero::before {
+      content: "JCF";
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      font-size: clamp(230px, 42vw, 650px);
+
+      font-weight: 1000;
+
+      letter-spacing: -40px;
+
+      color: rgba(255, 255, 255, .035);
+
+      white-space: nowrap;
+
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255,255,255,.025) 50%,
+          transparent 100%
+        );
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      padding: 80px 20px;
+    }
+
+    .hero-kicker {
+      color: #e10600;
+
+      font-size: 18px;
+
+      font-weight: 1000;
+
+      letter-spacing: 7px;
+
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(65px, 13vw, 155px);
+
+      line-height: .82;
+
+      font-weight: 1000;
+
+      letter-spacing: -7px;
+
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      margin-top: 25px;
+
+      color: #aaa;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+    .hero-buttons {
+      margin-top: 40px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 15px;
+
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .btn {
+      min-width: 215px;
+
+      padding: 17px 25px;
+
+      display: inline-flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 1.2px;
+
+      text-transform: uppercase;
+
+      border: 1px solid #e10600;
+
+      transition: .2s ease;
+    }
+
+    .btn-red {
+      background: #e10600;
+      color: #ffffff;
+    }
+
+    .btn-red:hover {
+      background: #b80000;
+      border-color: #b80000;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border-color: #444;
+    }
+
+    .btn-outline:hover {
+      border-color: #e10600;
+      background: rgba(225, 6, 0, .08);
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1450px;
+
+      margin: 0 auto;
+
+      padding: 75px 30px 100px;
+    }
+
+    .section-title {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 20px;
+
+      padding-bottom: 18px;
+
+      margin-bottom: 30px;
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+
+      font-weight: 1000;
+
+      letter-spacing: -1px;
+
+      text-transform: uppercase;
+    }
+
+    .section-title span {
+      color: #777;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       NEXT EVENT
+    ========================= */
+
+    .next-event {
+      position: relative;
+
+      min-height: 490px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 80% 35%,
+          rgba(225, 6, 0, .18),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #171717,
+          #080808
+        );
+
+      border: 1px solid #292929;
+    }
+
+    .next-event::before {
+      content: "032";
+
+      position: absolute;
+
+      right: -20px;
+
+      bottom: -75px;
+
+      font-size: 310px;
+
+      line-height: 1;
+
+      font-weight: 1000;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .event-content {
+      position: relative;
+
+      z-index: 2;
+
+      padding: 55px;
+
+      max-width: 1000px;
+    }
+
+    .event-label {
+      display: inline-block;
+
+      color: #e10600;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 15px;
+    }
+
+    .event-name {
+      font-size: clamp(58px, 10vw, 110px);
+
+      line-height: .82;
+
+      font-weight: 1000;
+
+      letter-spacing: -5px;
+
+      text-transform: uppercase;
+    }
+
+    .event-main {
+      margin-top: 30px;
+
+      font-size: clamp(31px, 5vw, 62px);
+
+      font-weight: 1000;
+
+      line-height: .95;
+
+      text-transform: uppercase;
+    }
+
+    .event-main span {
+      color: #e10600;
+    }
+
+    .event-championship {
+      margin-top: 20px;
+
+      color: #c5c5c5;
+
+      font-size: 13px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.2px;
+
+      line-height: 1.5;
+
+      text-transform: uppercase;
+    }
+
+    .event-details {
+      margin-top: 28px;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 25px;
+    }
+
+    .event-detail {
+      border-left: 2px solid #e10600;
+
+      padding-left: 12px;
+    }
+
+    .event-detail small {
+      display: block;
+
+      color: #777;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      margin-bottom: 5px;
+
+      text-transform: uppercase;
+    }
+
+    .event-detail strong {
+      font-size: 13px;
+
+      font-weight: 900;
+
+      letter-spacing: .7px;
+
+      text-transform: uppercase;
+    }
+
+    .event-button {
+      margin-top: 35px;
+    }
+
+    /* =========================
+       UPCOMING EVENTS
+    ========================= */
+
+    .upcoming-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .upcoming-card {
+      position: relative;
+
+      min-height: 220px;
+
+      padding: 28px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      background: #101010;
+
+      border: 1px solid #242424;
+
+      overflow: hidden;
+
+      transition: .2s ease;
+    }
+
+    .upcoming-card:hover {
+      border-color: #555;
+
+      transform: translateY(-4px);
+    }
+
+    .upcoming-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 140px;
+      height: 140px;
+
+      right: -45px;
+      top: -45px;
+
+      border-radius: 50%;
+
+      background: rgba(225, 6, 0, .08);
+    }
+
+    .upcoming-number {
+      position: relative;
+
+      z-index: 2;
+
+      color: #e10600;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .upcoming-card h3 {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 30px;
+
+      font-size: clamp(25px, 4vw, 42px);
+
+      line-height: .9;
+
+      font-weight: 1000;
+
+      letter-spacing: -1px;
+
+      text-transform: uppercase;
+    }
+
+    .upcoming-date {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 20px;
+
+      color: #999;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       CHAMPIONS
+    ========================= */
+
+    .champions-grid {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 18px;
+    }
+
+    .champion-card {
+      position: relative;
+
+      min-height: 230px;
+
+      padding: 25px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: flex-end;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          #171717,
+          #0b0b0b
+        );
+
+      border: 1px solid #292929;
+
+      transition: .2s ease;
+    }
+
+    .champion-card:hover {
+      transform: translateY(-4px);
+
+      border-color: #555;
+    }
+
+    .champion-card::before {
+      content: "JCF";
+
+      position: absolute;
+
+      top: -25px;
+
+      right: -5px;
+
+      font-size: 100px;
+
+      font-weight: 1000;
+
+      line-height: 1;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .champion-card::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      top: 0;
+
+      width: 4px;
+
+      height: 100%;
+
+      background: #e10600;
+
+      opacity: .8;
+    }
+
+    .champion-info {
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .champion-division {
+      color: #e10600;
+
+      font-size: 9px;
+
+      font-weight: 1000;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 9px;
+    }
+
+    .champion-name {
+      font-size: clamp(20px, 2.5vw, 29px);
+
+      line-height: .95;
+
+      font-weight: 1000;
+
+      text-transform: uppercase;
+    }
+
+    .champion-card.vacant {
+      justify-content: center;
+
+      text-align: center;
+
+      background:
+        repeating-linear-gradient(
+          135deg,
+          #0c0c0c,
+          #0c0c0c 10px,
+          #111 10px,
+          #111 20px
+        );
+    }
+
+    .champion-card.vacant::after {
+      opacity: .35;
+    }
+
+    .vacant-title {
+      color: #777;
+
+      font-size: 10px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 12px;
+    }
+
+    .vacant-name {
+      color: #555;
+
+      font-size: 34px;
+
+      font-weight: 1000;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       WHO RULES JCF
+    ========================= */
+
+    .rankings-banner {
+      position: relative;
+
+      min-height: 350px;
+
+      padding: 55px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 40px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 85% 50%,
+          rgba(225,6,0,.25),
+          transparent 38%
+        ),
+        linear-gradient(
+          120deg,
+          #151515,
+          #070707
+        );
+
+      border: 1px solid #292929;
+    }
+
+    .rankings-banner::before {
+      content: "#1";
+
+      position: absolute;
+
+      right: 10px;
+
+      bottom: -100px;
+
+      font-size: 380px;
+
+      line-height: 1;
+
+      font-weight: 1000;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .rankings-content {
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .rankings-label {
+      color: #e10600;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 13px;
+
+      text-transform: uppercase;
+    }
+
+    .rankings-banner h2 {
+      font-size: clamp(50px, 8vw, 95px);
+
+      line-height: .83;
+
+      font-weight: 1000;
+
+      letter-spacing: -5px;
+
+      text-transform: uppercase;
+    }
+
+    .rankings-banner p {
+      max-width: 590px;
+
+      margin-top: 22px;
+
+      color: #999;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+    }
+
+    .rankings-button {
+      position: relative;
+
+      z-index: 2;
+
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #080808;
+
+      border-top: 1px solid #222;
+
+      padding: 45px 25px;
+
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+
+      font-weight: 1000;
+
+      margin-bottom: 10px;
+    }
+
+    .footer-logo span {
+      color: #e10600;
+    }
+
+    footer p {
+      color: #666;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 1050px) {
+
+      .header-inner {
+        flex-direction: column;
+
+        padding: 18px 20px;
+      }
+
+      nav {
+        justify-content: center;
+
+        gap: 16px;
+      }
+
+      .upcoming-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .champions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rankings-banner {
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .hero {
+        min-height: 540px;
+      }
+
+      .hero h1 {
+        letter-spacing: -4px;
+      }
+
+      main {
+        padding: 55px 15px 75px;
+      }
+
+      .section-title {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+      }
+
+      .event-content {
+        padding: 35px 25px;
+      }
+
+      .event-name {
+        font-size: 58px;
+      }
+
+      .event-main {
+        font-size: 34px;
+      }
+
+      .champions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .champion-card {
+        min-height: 210px;
+      }
+
+      .rankings-banner {
+        padding: 35px 25px;
+      }
+
+      .rankings-banner h2 {
+        letter-spacing: -3px;
+      }
+    }
+
+    /* =========================
+       SMALL MOBILE
+    ========================= */
+
+    @media (max-width: 480px) {
+
+      .logo {
+        font-size: 26px;
+      }
+
+      nav {
+        gap: 11px;
+      }
+
+      nav a {
+        font-size: 9px;
+      }
+
+      .hero {
+        min-height: 500px;
+      }
+
+      .hero-kicker {
+        font-size: 12px;
+
+        letter-spacing: 4px;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+      }
+
+      .hero-subtitle {
+        font-size: 10px;
+
+        letter-spacing: 2px;
+      }
+
+      .hero-buttons {
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+
+        min-width: 0;
+      }
+
+      .event-name {
+        font-size: 52px;
+      }
+
+      .event-main {
+        font-size: 30px;
+      }
+
+      .event-details {
+        flex-direction: column;
+
+        gap: 15px;
+      }
+
+      .upcoming-card {
+        min-height: 190px;
+      }
+
+      .champion-card {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <a href="/" class="logo">
+        <span>JCF</span> MMA
+      </a>
+
+      <nav>
+
+        <a href="/" class="active">
+          HOME
+        </a>
+
+        <a href="/events/">
+          EVENTS
+        </a>
+
+        <a href="/">
+          RANKINGS
+        </a>
+
+        <a href="/athletes/">
+          ATHLETES
+        </a>
+
+        <a href="/news/">
+          NEWS
+        </a>
+
+        <a href="/hall-of-fame/">
+          JCF HALL OF FAME
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+    ========================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-kicker">
+        JCF MMA
+      </div>
+
+      <h1>
+        JCF MMA
+      </h1>
+
+      <div class="hero-subtitle">
+        THE FUTURE OF MMA
+      </div>
+
+      <div class="hero-buttons">
+
+        <a
+          href="#upcoming-events"
+          class="btn btn-red"
+        >
+          VIEW UPCOMING EVENTS
+        </a>
+
+        <a
+          href="/"
+          class="btn btn-outline"
+        >
+          VIEW RANKINGS
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+
+    <!-- =========================
+         NEXT EVENT
+    ========================= -->
+
+    <section>
+
+      <div class="section-title">
+
+        <h2>
+          NEXT EVENT
+        </h2>
+
+        <span>
+          JCF MMA
+        </span>
+
+      </div>
+
+
+      <div class="next-event">
+
+        <div class="event-content">
+
+          <div class="event-label">
+            NEXT EVENT
+          </div>
+
+          <div class="event-name">
+            JCF 032
+          </div>
+
+          <div class="event-main">
+            JITMUANGNON
+            <span>VS</span>
+            COAN
+          </div>
+
+          <div class="event-championship">
+            JCF LIGHTWEIGHT AND BMF LIGHTWEIGHT CHAMPIONSHIP
+          </div>
+
+          <div class="event-details">
+
+            <div class="event-detail">
+
+              <small>
+                DATE
+              </small>
+
+              <strong>
+                AUGUST 29
+              </strong>
+
+            </div>
+
+
+            <div class="event-detail">
+
+              <small>
+                TIME
+              </small>
+
+              <strong>
+                3:10 PM EST
+              </strong>
+
+            </div>
+
+
+            <div class="event-detail">
+
+              <small>
+                LOCATION
+              </small>
+
+              <strong>
+                JCF ARENA
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="event-button">
+
+            <a
+              href="/events/"
+              class="btn btn-red"
+            >
+              VIEW EVENT
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         UPCOMING EVENTS
+    ========================= -->
+
+    <section
+      id="upcoming-events"
+      style="margin-top: 80px;"
+    >
+
+      <div class="section-title">
+
+        <h2>
+          UPCOMING EVENTS
+        </h2>
+
+        <span>
+          JCF SCHEDULE
+        </span>
+
+      </div>
+
+
+      <div class="upcoming-grid">
+
+
+        <a
+          href="/events/"
+          class="upcoming-card"
+        >
+
+          <div class="upcoming-number">
+            JCF 032
+          </div>
+
+          <h3>
+            JCF 032
+          </h3>
+
+          <div class="upcoming-date">
+            AUGUST 29
+          </div>
+
+        </a>
+
+
+        <a
+          href="/events/"
+          class="upcoming-card"
+        >
+
+          <div class="upcoming-number">
+            JCF FIGHT NIGHT 010
+          </div>
+
+          <h3>
+            FIGHT NIGHT 010
+          </h3>
+
+          <div class="upcoming-date">
+            SEPTEMBER 5
+          </div>
+
+        </a>
+
+
+        <a
+          href="/events/"
+          class="upcoming-card"
+        >
+
+          <div class="upcoming-number">
+            JCF 033
+          </div>
+
+          <h3>
+    
