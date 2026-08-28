@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JCF | News</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      width: 100%;
+      background: #080808;
+      border-bottom: 1px solid #252525;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      max-width: 1450px;
+      min-height: 78px;
+      margin: 0 auto;
+      padding: 0 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 29px;
+      font-weight: 1000;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #e10600;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #999;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+    }
+
+    nav a.active {
+      position: relative;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -11px;
+      height: 2px;
+      background: #e10600;
+    }
+
+    /* =========================
+       PAGE HERO
+    ========================= */
+
+    .page-hero {
+      position: relative;
+      min-height: 390px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(225, 6, 0, .16),
+          transparent 42%
+        ),
+        linear-gradient(
+          135deg,
+          #151515,
+          #080808 55%,
+          #030303
+        );
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .page-hero::before {
+      content: "JCF";
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      font-size: clamp(230px, 43vw, 620px);
+
+      line-height: .8;
+
+      font-weight: 1000;
+
+      letter-spacing: -35px;
+
+      color: rgba(255,255,255,.035);
+
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 70px 20px;
+    }
+
+    .page-kicker {
+      color: #e10600;
+
+      font-size: 12px;
+
+      font-weight: 1000;
+
+      letter-spacing: 5px;
+
+      margin-bottom: 18px;
+
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(65px, 12vw, 140px);
+
+      line-height: .82;
+
+      font-weight: 1000;
+
+      letter-spacing: -6px;
+
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      margin-top: 23px;
+
+      color: #888;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 65px 25px 100px;
+    }
+
+    .section-heading {
+      display: flex;
+
+      align-items: flex-end;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding-bottom: 17px;
+
+      margin-bottom: 30px;
+
+      border-bottom: 1px solid #242424;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+
+      font-weight: 1000;
+
+      letter-spacing: -1px;
+
+      text-transform: uppercase;
+    }
+
+    .section-heading span {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       NEWS LIST
+    ========================= */
+
+    .news-list {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+    }
+
+    /* =========================
+       NEWS CARD
+    ========================= */
+
+    .news-card {
+      position: relative;
+
+      min-height: 210px;
+
+      padding: 35px 40px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 92% 50%,
+          rgba(225, 6, 0, .10),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #171717,
+          #0a0a0a
+        );
+
+      border: 1px solid #292929;
+
+      transition: .2s ease;
+    }
+
+    .news-card:hover {
+      border-color: #4a4a4a;
+
+      transform: translateY(-3px);
+    }
+
+    .news-card::before {
+      content: "JCF";
+
+      position: absolute;
+
+      right: -20px;
+
+      top: -50px;
+
+      font-size: 190px;
+
+      line-height: 1;
+
+      font-weight: 1000;
+
+      letter-spacing: -15px;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .news-card::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      top: 0;
+
+      bottom: 0;
+
+      width: 4px;
+
+      background: #e10600;
+    }
+
+    .news-number {
+      position: relative;
+
+      z-index: 2;
+
+      color: #e10600;
+
+      font-size: 10px;
+
+      font-weight: 1000;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 13px;
+    }
+
+    .news-title {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 980px;
+
+      font-size: clamp(25px, 4vw, 47px);
+
+      line-height: .95;
+
+      font-weight: 1000;
+
+      letter-spacing: -1.5px;
+
+      text-transform: uppercase;
+    }
+
+    .news-title .red {
+      color: #e10600;
+    }
+
+    .news-meta {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 18px;
+
+      color: #777;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       FEATURED NEWS
+    ========================= */
+
+    .news-card.featured {
+      min-height: 300px;
+
+      background:
+        radial-gradient(
+          circle at 80% 50%,
+          rgba(225, 6, 0, .18),
+          transparent 38%
+        ),
+        linear-gradient(
+          135deg,
+          #1b1b1b,
+          #070707
+        );
+    }
+
+    .news-card.featured .news-title {
+      font-size: clamp(32px, 5vw, 61px);
+
+      max-width: 1050px;
+    }
+
+    .featured-label {
+      position: relative;
+
+      z-index: 2;
+
+      display: inline-block;
+
+      width: fit-content;
+
+      padding: 8px 12px;
+
+      margin-bottom: 18px;
+
+      background: #e10600;
+
+      color: #ffffff;
+
+      font-size: 9px;
+
+      font-weight: 1000;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #080808;
+
+      border-top: 1px solid #222;
+
+      padding: 45px 20px;
+
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 27px;
+
+      font-weight: 1000;
+
+      margin-bottom: 9px;
+    }
+
+    .footer-logo span {
+      color: #e10600;
+    }
+
+    footer p {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .header-inner {
+        flex-direction: column;
+
+        padding: 17px 20px;
+      }
+
+      nav {
+        justify-content: center;
+
+        gap: 15px;
+      }
+
+      .news-card {
+        padding: 30px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      .page-hero {
+        min-height: 330px;
+      }
+
+      .page-hero h1 {
+        font-size: 60px;
+
+        letter-spacing: -4px;
+      }
+
+      main {
+        padding: 50px 14px 75px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+      }
+
+      .news-card,
+      .news-card.featured {
+        min-height: 220px;
+
+        padding: 27px 20px;
+      }
+
+      .news-title,
+      .news-card.featured .news-title {
+        font-size: 29px;
+
+        letter-spacing: -1px;
+      }
+    }
+
+    /* =========================
+       SMALL PHONES
+    ========================= */
+
+    @media (max-width: 400px) {
+
+      .logo {
+        font-size: 25px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .page-hero h1 {
+        font-size: 53px;
+      }
+
+      .news-title,
+      .news-card.featured .news-title {
+        font-size: 25px;
+      }
+
+      .news-card {
+        padding: 24px 17px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <a href="/home/" class="logo">
+        <span>JCF</span> MMA
+      </a>
+
+      <nav>
+
+        <a href="/home/">
+          HOME
+        </a>
+
+        <a href="/events/">
+          EVENTS
+        </a>
+
+        <a href="/rankings/">
+          RANKINGS
+        </a>
+
+        <a href="/athletes/">
+          ATHLETES
+        </a>
+
+        <a href="/news/" class="active">
+          NEWS
+        </a>
+
+        <a href="/hall-of-fame/">
+          JCF HALL OF FAME
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       PAGE HERO
+  ========================= -->
+
+  <section class="page-hero">
+
+    <div class="page-hero-content">
+
+      <div class="page-kicker">
+        JCF MMA
+      </div>
+
+      <h1>
+        NEWS
+      </h1>
+
+      <div class="page-subtitle">
+        THE LATEST FROM JCF
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+
+    <div class="section-heading">
+
+      <h2>
+        LATEST NEWS
+      </h2>
+
+      <span>
+        JCF MMA NEWS
+      </span>
+
+    </div>
+
+
+    <div class="news-list">
+
+
+      <!-- =========================
+           NEWS 01
+      ========================= -->
+
+      <article class="news-card featured">
+
+        <div class="featured-label">
+          BREAKING NEWS
+        </div>
+
+        <div class="news-number">
+          JCF NEWS 001
+        </div>
+
+        <h2 class="news-title">
+          CRONOR MACGERVOR
+          <span class="red">BEATS</span>
+          LION DAVIS
+          <span class="red">BY KO</span>
+        </h2>
+
+        <div class="news-meta">
+          JCF MMA
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           NEWS 02
+      ========================= -->
+
+      <article class="news-card">
+
+        <div class="news-number">
+          JCF NEWS 002
+        </div>
+
+        <h2 class="news-title">
+          EVERY FIGHT ON JCF 031
+          <span class="red">WAS A KO/TKO 😳</span>
+        </h2>
+
+        <div class="news-meta">
+          JCF 031
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           NEWS 03
+      ========================= -->
+
+      <article class="news-card">
+
+        <div class="news-number">
+          JCF NEWS 003
+        </div>
+
+        <h2 class="news-title">
+          ANDERSON SILVA
+          <span class="red">PULLS OUT</span>
+          DUE TO INJURY
+        </h2>
+
+        <div class="news-meta">
+          JCF MMA
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           NEWS 04
+      ========================= -->
+
+      <article class="news-card">
+
+        <div class="news-number">
+          JCF NEWS 004
+        </div>
+
+        <h2 class="news-title">
+          SHANE DOUGLASS
+          <span class="red">VS</span>
+          SALEM
+          <span class="red">NEW MATCH FOR INTERIM BELT</span>
+        </h2>
+
+        <div class="news-meta">
+          JCF MMA
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           NEWS 05
+      ========================= -->
+
+      <article class="news-card">
+
+        <div class="news-number">
+          JCF NEWS 005
+        </div>
+
+        <h2 class="news-title">
+          CINNAMON
+          <span class="red">
+            (JCF LIGHTWEIGHT CHAMPION)
+          </span>
+          VS
+          USAIN
+          <span class="red">
+            (BMF LIGHTWEIGHT CHAMPION)
+          </span>
+          AS JCF 032 MAIN EVENT
+        </h2>
+
+        <div class="news-meta">
+          JCF 032
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-logo">
+      <span>JCF</span> MMA
+    </div>
+
+    <p>
+      THE FUTURE OF MMA
+    </p>
+
+  </footer>
+
+
+</body>
+        </html>
