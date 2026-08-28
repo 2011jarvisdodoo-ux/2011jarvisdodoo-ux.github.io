@@ -112,9 +112,18 @@
       text-align: center;
       overflow: hidden;
       border-bottom: 1px solid #222;
+
       background:
-        radial-gradient(circle at center, rgba(225, 6, 0, 0.17), transparent 42%),
-        linear-gradient(180deg, #111111 0%, #070707 100%);
+        radial-gradient(
+          circle at center,
+          rgba(225, 6, 0, 0.17),
+          transparent 42%
+        ),
+        linear-gradient(
+          180deg,
+          #111111 0%,
+          #070707 100%
+        );
     }
 
     .hero::before {
@@ -123,10 +132,13 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+
       font-size: clamp(150px, 27vw, 430px);
       font-weight: 900;
       letter-spacing: -25px;
+
       color: rgba(255, 255, 255, 0.025);
+
       pointer-events: none;
       white-space: nowrap;
     }
@@ -176,7 +188,9 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 20px;
+
       margin-bottom: 35px;
+
       border-bottom: 1px solid #252525;
       padding-bottom: 18px;
     }
@@ -208,11 +222,18 @@
 
     .hall-card {
       position: relative;
+
       min-height: 500px;
+
       overflow: hidden;
+
       background: #101010;
+
       border: 1px solid #242424;
-      transition: transform 0.25s ease, border-color 0.25s ease;
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
     }
 
     .hall-card:hover {
@@ -223,10 +244,13 @@
     .hall-image {
       position: absolute;
       inset: 0;
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
       object-position: center top;
+
       transition: transform 0.4s ease;
     }
 
@@ -236,8 +260,10 @@
 
     .hall-card::after {
       content: "";
+
       position: absolute;
       inset: 0;
+
       background:
         linear-gradient(
           180deg,
@@ -245,40 +271,55 @@
           rgba(0, 0, 0, 0.22) 45%,
           rgba(0, 0, 0, 0.94) 100%
         );
+
       pointer-events: none;
     }
 
     .hall-info {
       position: absolute;
+
       left: 0;
       right: 0;
       bottom: 0;
+
       z-index: 2;
+
       padding: 30px;
     }
 
     .inductee-number {
       color: #e10600;
+
       font-size: 12px;
       font-weight: 900;
+
       letter-spacing: 2px;
+
       margin-bottom: 9px;
     }
 
     .hall-info h3 {
       font-size: clamp(28px, 4vw, 48px);
+
       line-height: 0.95;
+
       font-weight: 1000;
+
       text-transform: uppercase;
+
       letter-spacing: -1.5px;
     }
 
     .hall-info p {
       margin-top: 10px;
+
       color: #b8b8b8;
+
       font-size: 12px;
       font-weight: 800;
+
       letter-spacing: 1.5px;
+
       text-transform: uppercase;
     }
 
@@ -288,14 +329,18 @@
 
     footer {
       border-top: 1px solid #222;
+
       background: #080808;
+
       padding: 35px 25px;
+
       text-align: center;
     }
 
     .footer-logo {
       font-size: 25px;
       font-weight: 900;
+
       margin-bottom: 10px;
     }
 
@@ -305,8 +350,11 @@
 
     footer p {
       color: #666;
+
       font-size: 11px;
+
       letter-spacing: 1px;
+
       text-transform: uppercase;
     }
 
@@ -315,13 +363,16 @@
     ========================= */
 
     @media (max-width: 800px) {
+
       .header-inner {
         flex-direction: column;
+
         padding: 18px 15px;
       }
 
       nav {
         justify-content: center;
+
         gap: 15px;
       }
 
@@ -347,7 +398,9 @@
 
       .section-heading {
         align-items: flex-start;
+
         flex-direction: column;
+
         gap: 8px;
       }
 
@@ -357,6 +410,7 @@
 
       .hall-grid {
         grid-template-columns: 1fr;
+
         gap: 18px;
       }
 
@@ -370,6 +424,7 @@
     }
 
     @media (max-width: 480px) {
+
       .logo {
         font-size: 26px;
       }
@@ -384,11 +439,13 @@
 
       .hero-kicker {
         font-size: 11px;
+
         letter-spacing: 3px;
       }
 
       .hero p {
         font-size: 11px;
+
         line-height: 1.5;
       }
 
@@ -410,6 +467,7 @@
   ========================= -->
 
   <header>
+
     <div class="header-inner">
 
       <a href="/" class="logo">
@@ -417,15 +475,38 @@
       </a>
 
       <nav>
-        <a href="/">HOME</a>
-        <a href="/events/">EVENTS</a>
-        <a href="/rankings/">RANKINGS</a>
-        <a href="/athletes/">ATHLETES</a>
-        <a href="/news/">NEWS</a>
-        <a href="/hall-of-fame/" class="active">JCF HALL OF FAME</a>
+
+        <a href="/">
+          HOME
+        </a>
+
+        <a href="/events/">
+          EVENTS
+        </a>
+
+        <a href="/rankings/">
+          RANKINGS
+        </a>
+
+        <a href="/athletes/">
+          ATHLETES
+        </a>
+
+        <a href="/news/">
+          NEWS
+        </a>
+
+        <a
+          href="/hall-of-fame/"
+          class="active"
+        >
+          JCF HALL OF FAME
+        </a>
+
       </nav>
 
     </div>
+
   </header>
 
 
@@ -446,7 +527,7 @@
       </h1>
 
       <p>
-        Honoring the greatest legends in JCF history
+        HONORING THE GREATEST LEGENDS IN JCF HISTORY
       </p>
 
     </div>
@@ -455,196 +536,336 @@
 
 
   <!-- =========================
-       HALL OF FAME
+       MAIN CONTENT
   ========================= -->
 
   <main>
 
     <div class="section-heading">
-      <h2>JCF Legends</h2>
-      <span>Hall of Fame Inductees</span>
+
+      <h2>
+        JCF LEGENDS
+      </h2>
+
+      <span>
+        HALL OF FAME INDUCTEES
+      </span>
+
     </div>
+
 
     <div class="hall-grid">
 
-      <!-- 01 -->
+
+      <!-- =========================
+           TERI HANEY
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000ef50822fa81d2f39e01b6060.png"
+          src="../file_00000000ef50822fa81d2f39e01b6060.png"
           alt="Teri Haney"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #01</div>
-          <h3>TERI HANEY</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #01
+          </div>
+
+          <h3>
+            TERI HANEY
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 02 -->
+      <!-- =========================
+           ERI HANEY
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000bbd081f7a35b30c7aea37008.png"
+          src="../file_00000000bbd081f7a35b30c7aea37008.png"
           alt="Eri Haney"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #02</div>
-          <h3>ERI HANEY</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #02
+          </div>
+
+          <h3>
+            ERI HANEY
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 03 -->
+      <!-- =========================
+           KAY DAVIS
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000730881f793b704fa105b3f08.png"
+          src="../file_00000000730881f793b704fa105b3f08.png"
           alt="Kay Davis"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #03</div>
-          <h3>KAY DAVIS</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #03
+          </div>
+
+          <h3>
+            KAY DAVIS
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 04 -->
+      <!-- =========================
+           MERON YAKIMOV
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000187881f7a919977d909ffed9.png"
+          src="../file_00000000187881f7a919977d909ffed9.png"
           alt="Meron Yakimov"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #04</div>
-          <h3>MERON YAKIMOV</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #04
+          </div>
+
+          <h3>
+            MERON YAKIMOV
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 05 -->
+      <!-- =========================
+           MELISSA BELLAMY
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000d67471f68174982bbc3bbd9e.png"
+          src="../file_00000000d67471f68174982bbc3bbd9e.png"
           alt="Melissa Bellamy"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #05</div>
-          <h3>MELISSA BELLAMY</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #05
+          </div>
+
+          <h3>
+            MELISSA BELLAMY
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 06 -->
+      <!-- =========================
+           GERVONTA DAVIS
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/Screenshot_20260424-185018.Moto_App_Launcher2.png"
+          src="../Screenshot_20260424-185018.Moto_App_Launcher2.png"
           alt="Gervonta Davis"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #06</div>
-          <h3>GERVONTA DAVIS</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #06
+          </div>
+
+          <h3>
+            GERVONTA DAVIS
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 07 -->
+      <!-- =========================
+           CRASH BANDICOOT
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_000000005da4722f88192eef1b3ac6a1-1.png"
+          src="../file_000000005da4722f88192eef1b3ac6a1-1.png"
           alt="Crash Bandicoot"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #07</div>
-          <h3>CRASH BANDICOOT</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #07
+          </div>
+
+          <h3>
+            CRASH BANDICOOT
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 08 -->
+      <!-- =========================
+           NICKOLAS TYSON / AYDEN TALBOTT
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000b5ec71f584169a48a5de2cb3-1.png"
+          src="../file_00000000b5ec71f584169a48a5de2cb3-1.png"
           alt="Nickolas Tyson and Ayden Talbott"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #08</div>
-          <h3>NICKOLAS TYSON / AYDEN TALBOTT</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #08
+          </div>
+
+          <h3>
+            NICKOLAS TYSON / AYDEN TALBOTT
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 09 -->
+      <!-- =========================
+           KAREN
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/Screenshot_20260422-204734.Moto_App_Launcher2-1.png"
+          src="../Screenshot_20260422-204734.Moto_App_Launcher2-1.png"
           alt="Karen"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #09</div>
-          <h3>KAREN</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #09
+          </div>
+
+          <h3>
+            KAREN
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
 
 
-      <!-- 10 -->
+      <!-- =========================
+           BRADY ASHFORD
+      ========================= -->
+
       <article class="hall-card">
 
         <img
           class="hall-image"
-          src="images/file_00000000f89481f9ba8711cdaa3c746a-1.png"
+          src="../file_00000000f89481f9ba8711cdaa3c746a-1.png"
           alt="Brady Ashford"
         >
 
         <div class="hall-info">
-          <div class="inductee-number">HALL OF FAME #10</div>
-          <h3>BRADY ASHFORD</h3>
-          <p>JCF Hall of Fame</p>
+
+          <div class="inductee-number">
+            HALL OF FAME #10
+          </div>
+
+          <h3>
+            BRADY ASHFORD
+          </h3>
+
+          <p>
+            JCF HALL OF FAME
+          </p>
+
         </div>
 
       </article>
+
 
     </div>
 
@@ -662,7 +883,7 @@
     </div>
 
     <p>
-      The Future of MMA
+      THE FUTURE OF MMA
     </p>
 
   </footer>
